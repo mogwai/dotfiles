@@ -1,0 +1,51 @@
+Host *
+	StrictHostKeyChecking no
+    ControlMaster auto
+ 	ControlPath /tmp/ssh-%r@%h:%pA
+    ControlPersist yes
+
+Host fd-vpn
+    Controlmaster auto
+    User root
+    Hostname labs.firedroplabs.com
+
+Host labs
+    HostName 10.8.0.6
+    ProxyCommand ssh root@labs.firedroplabs.com nc %h %p
+    User h
+    ForwardAgent yes
+
+
+# Personal
+# ======== 
+Host mail
+    User root
+    Hostname mail.baz.codes
+
+Host openwrtr
+	User root
+	Hostname 192.168.1.1
+	ProxyCommand ssh root@baz.codes nc %h %p
+
+Host km
+	User root 
+	Hostname 192.168.1.209
+	ProxyCommand ssh root@baz.codes nc %h %p
+
+Host hd
+	User harry
+	Hostname 192.168.1.122	
+	ProxyCommand ssh root@baz.codes nc %h %p
+	ForwardAgent yes
+    LocalForward 8888 localhost:8888 
+
+Host hdl
+    User harry
+    Hostname hd.lan
+    LocalForward 8888 localhost:8888
+    LocalForward 6006 localhost:6006
+
+Host mail
+    User root
+    HostName mail.baz.codes
+    ForwardAgent yes
