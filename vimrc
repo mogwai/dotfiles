@@ -44,7 +44,7 @@ set hidden
 set nobackup
 set nowritebackup
 set hlsearch
-set cmdheight=2
+set cmdheight=1
 set mouse=a
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " " delays and poor user experience.
@@ -79,8 +79,19 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-set statusline=%F
+
+set laststatus=1
+set statusline=
+set statusline+=%7*\[%n]                                  "buffernr
+set statusline+=%1*\ %<%F\                                "File+path
+set statusline+=%2*\ %y\                                  "FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
+set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+set statusline+=%9*\ col:%03c\                            "Colnr
+set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
+set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
