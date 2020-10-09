@@ -41,6 +41,8 @@ set expandtab
 set number
 filetype indent on
 set hidden
+set nobackup
+set nowritebackup
 set hlsearch
 set cmdheight=1
 set mouse=a
