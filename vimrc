@@ -41,8 +41,6 @@ set expandtab
 set number
 filetype indent on
 set hidden
-set nobackup
-set nowritebackup
 set hlsearch
 set cmdheight=1
 set mouse=a
@@ -77,6 +75,8 @@ endif
 nmap <C-d> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
+
+"Find all references
 nmap <silent> gr <Plug>(coc-references)
 
 
@@ -141,3 +141,7 @@ call coc#config('python', {'pythonPath': s:current_python_path})
 " Remove help screen when pressing f1
 :nmap <F1> :echo<CR>
 :imap <F1> <C-o>:echo<CR>
+
+" Change the swap file directory and backup directory
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
