@@ -18,6 +18,10 @@ Host labs
 
 # Personal
 # ======== 
+Host vpn
+    User root
+    HostName baz.codes
+#
 Host mail
     User root
     Hostname mail.baz.codes
@@ -45,7 +49,3 @@ Host hdl
     LocalForward 8888 localhost:8888
     LocalForward 6006 localhost:6006
 
-Host mail
-    User root
-    HostName mail.baz.codes
-    ForwardAgent yes
