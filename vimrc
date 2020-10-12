@@ -51,7 +51,7 @@ set mouse=a
 set updatetime=300
 
 "Keybindings
-map <C-e> :NERDTreeToggle<CR>
+" map <C> :NERDTreeToggle<CR>
 map  <C-n> :tabnew<CR>
 map <C-p> :GFiles<CR>
 map <C-F> :Rg<CR>
@@ -74,7 +74,7 @@ else
 endif
 
 "Go to Definition
-nmap <C-d> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 
@@ -147,3 +147,7 @@ call coc#config('python', {'pythonPath': s:current_python_path})
 " Change the swap file directory and backup directory
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
+
+
+" Fix the cursor in the middle of the screen
+set so=999
