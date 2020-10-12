@@ -29,6 +29,8 @@ alias wn1='watch -n 1'
 
 alias grep='rg'
 
+alias cssh='rm -r /tmp/ssh-*'
+
 # Search History for commands matching the expression
 
 function fh {
