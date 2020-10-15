@@ -171,3 +171,5 @@ source <(pip completion --bash)
 # Save bash history 
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+source <(gh completion -s bash)
