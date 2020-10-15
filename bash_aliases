@@ -26,7 +26,7 @@ alias clip='xclip -i -sel c'
 alias terminal='gnome-terminal'
 alias kc='kubectl'
 alias wn1='watch -n 1'
-
+alias myip='curl https://api.ipify.org'
 alias grep='rg'
 
 alias cssh='rm -r /tmp/ssh-*'
