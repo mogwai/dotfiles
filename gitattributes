@@ -1,0 +1,3 @@
+*.js diff=javascript
+*.py diff=python
+*.md diff=markdown
