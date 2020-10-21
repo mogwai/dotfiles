@@ -31,9 +31,15 @@ alias grep='rg'
 
 alias cssh='rm -r /tmp/ssh-*'
 
+alias p='python'
+
+# Clear swap files
+
+alias vimclear='rm -r ~/.vim/swap/*.swp'
+
 # Search History for commands matching the expression
 
-function fh {
+fh() {
     history | awk '{$1=""; print substr($0,2)}'| rg $1   
 }
 
@@ -42,8 +48,8 @@ function fh {
 alias gb='git branch | fzf | xargs git checkout'
 alias gba='git branch -a | fzf | xargs git checkout'
 
-function rmnodem() {
-				for i in $(find . -depth -name *node_modules* | tac); do rm -rf $i; done
+rmnodem() {
+    for i in $(find . -depth -name *node_modules* | tac); do rm -rf $i; done
 }
 
 vim() {
@@ -71,4 +77,8 @@ vim() {
 
     # Use `command' to invoke the vim binary rather than this function.
     command "$FUNCNAME" "${args[@]}"
+}
+
+convertnb() {
+    jupyter nbconvert --to script $1 --stdout
 }
