@@ -42,7 +42,7 @@ Host kml
 
 Host hd
 	User harry
-	Hostname 192.168.1.122	
+	Hostname 192.168.1.121
 	ProxyCommand ssh root@baz.codes nc %h %p
 	ForwardAgent yes
     LocalForward 8888 localhost:8888 
