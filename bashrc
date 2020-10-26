@@ -183,8 +183,7 @@ fi
 # export PATH=$GOPATH/bin:$PATH
 
 # Helm
-# eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-# source <(helm completion bash)
+source <(helm completion bash)
 
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
