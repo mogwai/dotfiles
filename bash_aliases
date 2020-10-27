@@ -83,6 +83,7 @@ vim() {
 
 convertnb() {
     jupyter nbconvert --to script $1 --stdout
+}
 
 venv() {
     if [[ ! -f ./.venv/bin/activate ]]; then
