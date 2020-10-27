@@ -2,12 +2,13 @@ export EDITOR=vim
 
 # Edit bash script
 function edb {
-    vim ~/.bash_$1 --sync && source ~/.bash_$1 
+    vim ~/.bash_$1 && source ~/.bash_$1 
 }
 
+alias c='clear'
 alias edba='edb aliases'
 alias edbp='edb profile'
-alias eb='vim ~/.bashrc --sync && source ~/.bashrc'
+alias eb='vim ~/.bashrc && source ~/.bashrc'
 alias essh='vim ~/.ssh/config'
 
 alias vf='vim $(fzf)'
@@ -31,6 +32,8 @@ alias grep='rg'
 
 alias cssh='rm -r /tmp/ssh-*'
 
+# Virtual Environments
+
 # Search History for commands matching the expression
 
 function fh {
@@ -43,9 +46,11 @@ alias gb='git branch | fzf | xargs git checkout'
 alias gba='git branch -a | fzf | xargs git checkout'
 
 function rmnodem() {
-				for i in $(find . -depth -name *node_modules* | tac); do rm -rf $i; done
+    for i in $(find . -depth -name *node_modules* | tac); do rm -rf $i; done
 }
 
+# Prevents vim from opening files that don't exist without
+# the --new flag
 vim() {
     local args=("$@")
     local new=0
@@ -71,4 +76,12 @@ vim() {
 
     # Use `command' to invoke the vim binary rather than this function.
     command "$FUNCNAME" "${args[@]}"
+}
+
+venv() {
+    if [[ ! -f ./.venv/bin/activate ]]; then
+        echo Creating Virtual Environment $(basename $PWD)
+        python -m venv .venv --prompt $(basename $PWD)
+    fi
+    source .venv/bin/activate
 }
