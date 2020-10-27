@@ -2,12 +2,13 @@ export EDITOR=vim
 
 # Edit bash script
 function edb {
-    vim ~/.bash_$1 --sync && source ~/.bash_$1 
+    vim ~/.bash_$1 && source ~/.bash_$1 
 }
 
+alias c='clear'
 alias edba='edb aliases'
 alias edbp='edb profile'
-alias eb='vim ~/.bashrc --sync && source ~/.bashrc'
+alias eb='vim ~/.bashrc && source ~/.bashrc'
 alias essh='vim ~/.ssh/config'
 
 alias vf='vim $(fzf)'
@@ -34,7 +35,6 @@ alias cssh='rm -r /tmp/ssh-*'
 alias p='python'
 
 # Clear swap files
-
 alias vimclear='rm -r ~/.vim/swap/*.swp'
 
 # Search History for commands matching the expression
@@ -52,6 +52,8 @@ rmnodem() {
     for i in $(find . -depth -name *node_modules* | tac); do rm -rf $i; done
 }
 
+# Prevents vim from opening files that don't exist without
+# the --new flag
 vim() {
     local args=("$@")
     local new=0
@@ -81,4 +83,11 @@ vim() {
 
 convertnb() {
     jupyter nbconvert --to script $1 --stdout
+
+venv() {
+    if [[ ! -f ./.venv/bin/activate ]]; then
+        echo Creating Virtual Environment $(basename $PWD)
+        python -m venv .venv --prompt $(basename $PWD)
+    fi
+    source .venv/bin/activate
 }

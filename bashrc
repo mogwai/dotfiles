@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+# force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -58,17 +58,17 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/'$USER'/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/'$USER'/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/'$USER'/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/'$USER'/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/h/miniforge-pypy3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/h/miniforge-pypy3/etc/profile.d/conda.sh" ]; then
+#         . "/home/h/miniforge-pypy3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/h/miniforge-pypy3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 git_branch() {
@@ -128,48 +128,90 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+# if ! shopt -oq posix; then
+#   if [ -f /usr/share/bash-completion/bash_completion ]; then
+#     . /usr/share/bash-completion/bash_completion
+#   elif [ -f /etc/bash_completion ]; then
+#     . /etc/bash_completion
+#   fi
+# fi
+
+NVM_DIR="$HOME/.nvm"
+
+# Skip adding binaries if there is no node version installed yet
+if [ -d $NVM_DIR/versions/node ]; then
+  NODE_GLOBALS=(`find $NVM_DIR/versions/node -maxdepth 3 \( -type l -o -type f \) -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+NODE_GLOBALS+=("nvm")
 
-source <(kubectl completion bash)
+load_nvm () {
+  # Unset placeholder functions
+  for cmd in "${NODE_GLOBALS[@]}"; do unset -f ${cmd} &>/dev/null; done
+
+  # Load NVM
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+  # (Optional) Set the version of node to use from ~/.nvmrc if available
+  nvm use 2> /dev/null 1>&2 || true
+
+  # Do not reload nvm again
+  export NVM_LOADED=1
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+  # Skip defining the function if the binary is already in the PATH
+  if ! which ${cmd} &>/dev/null; then
+    eval "${cmd}() { unset -f ${cmd} &>/dev/null; [ -z \${NVM_LOADED+x} ] && load_nvm; ${cmd} \$@; }"
+  fi
+done
+
+kubectl () {
+    command kubectl $*
+    if [[ -z $KUBECTL_COMPLETE ]]
+    then
+        source <(command kubectl completion bash)
+        KUBECTL_COMPLETE=1 
+		complete -F __start_kubectl k
+    fi
+}
+
 alias k=kubectl
 
-complete -F __start_kubectl k
 . ~/.fzf.bash
+
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs'
   export FZF_DEFAULT_OPTS='-m --height 50%'
 fi
 
 # GoLang
-export GOROOT=/home/$USER/.go
-export PATH=$GOROOT/bin:$PATH
-export GOPATH=/home/$USER/go
-export PATH=$GOPATH/bin:$PATH
+# export GOROOT=/home/$USER/.go
+# export PATH=$GOROOT/bin:$PATH
+# export GOPATH=/home/$USER/go
+# export PATH=$GOPATH/bin:$PATH
 
 # Helm
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-source <(helm completion bash)
+# source <(helm completion bash)
 
-# Noise Torch
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
 
-source <(pip completion --bash)
+pip () {
+    command pip $*
+    if [[ -z $_PIP_COMPLETE ]]
+    then
+        source <(command pip completion --bash)
+        _PIP_COMPLETE=1 
+    fi
+}
 
 # Save bash history 
 # After each command, save and reload history
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-source <(gh completion -s bash)
+if type gh &> /dev/null; then
+    source <(gh completion -s bash)
+fi
