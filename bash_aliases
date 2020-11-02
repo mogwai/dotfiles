@@ -5,6 +5,11 @@ function edb {
     vim ~/.bash_$1 && source ~/.bash_$1 
 }
 
+# some more ls aliases
+alias l='ls -alF'
+alias ..='cd ..'
+
+
 alias c='clear'
 alias edba='edb aliases'
 alias edbp='edb profile'
