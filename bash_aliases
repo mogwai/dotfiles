@@ -97,3 +97,7 @@ venv() {
     fi
     source .venv/bin/activate
 }
+
+battery() {
+    upower -i /org/freedesktop/UPower/devices/battery_cw2015_battery | grep percent | awk '{print $2}'
+}
