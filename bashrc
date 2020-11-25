@@ -244,4 +244,4 @@ elif [ -d "/home/$USER/miniconda3" ]; then
     # <<< conda initialize <<<
 fi
 
-export GPG_TTY=/dev/pts/3
+export GPG_TTY=$(tty)
