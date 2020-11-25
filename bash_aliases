@@ -16,7 +16,6 @@ alias edbp='edb profile'
 alias eb='vim ~/.bashrc && source ~/.bashrc'
 alias essh='vim ~/.ssh/config'
 
-alias vf='vim $(fzf)'
 alias vrc='vim ~/.vimrc'
 alias v='vim'
 
@@ -91,11 +90,16 @@ convertnb() {
 }
 
 venv() {
-    if [[ ! -f ./.venv/bin/activate ]]; then
-        echo Creating Virtual Environment $(basename $PWD)
+    if [[ -f .venv/bin/activate ]]; then
+       # There is a venv created here
+       source .venv/bin/activate
+    else
         python -m venv .venv --prompt $(basename $PWD)
+        source .venv/bin/activate
+        if [[ -f ~/.venv/bin/activate ]]; then
+            cp -r ~/.venv/lib .venv/
+        fi
     fi
-    source .venv/bin/activate
 }
 
 battery() {
