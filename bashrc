@@ -180,6 +180,18 @@ kubectl () {
 
 alias k=kubectl
 
+# HELM Lazy load
+
+helm () {
+    command helm $*
+    if [[ -z $_HELM_COMPLETE ]] 
+    then
+        source <(command helm completion bash)
+        _HELM_COMPLETE=1
+    fi
+}
+
+# Setup fzf bash
 . ~/.fzf.bash
 
 if type rg &> /dev/null; then
@@ -210,6 +222,16 @@ pip () {
     fi
 }
 
+docker () {
+    command docker $*
+    if [[ -z $_DOCKER_COMPLETE ]]
+    then
+        sudo systemctl start docker
+        sudo systemctl start containerd
+        _DOCKER_COMPLETE=1
+    fi
+}
+
 # Save bash history 
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
@@ -219,4 +241,6 @@ if type gh &> /dev/null; then
 fi
 
 # Activate default virtual env
-venv
+if [[ -f ~/.venv/bin/activate ]]; then
+    source ~/.venv/bin/activate
+fi
