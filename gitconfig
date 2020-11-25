@@ -10,6 +10,5 @@
     attributesfile = /home/harry/.gitattributes
 [commit]
     gpgsign = true
-
-
-
+[pull]
+	ebase = false

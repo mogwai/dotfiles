@@ -109,3 +109,7 @@ function condac {
     conda activate $(basename $PWD)
     pip install jedi black isort pdbpp > /dev/null
 }
+
+battery() {
+    upower -i /org/freedesktop/UPower/devices/battery_cw2015_battery | grep percent | awk '{print $2}'
+}

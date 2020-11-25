@@ -3,6 +3,7 @@ Host *
     ControlMaster auto
  	ControlPath /tmp/ssh-%r@%h:%pA
     ControlPersist yes
+    ServerAliveInterval 10
 
 Host fd-vpn
     Controlmaster auto
@@ -14,7 +15,6 @@ Host labs
     ProxyCommand ssh root@labs.firedroplabs.com nc %h %p
     User h
     ForwardAgent yes
-
 
 # Personal
 # ======== 
@@ -39,6 +39,7 @@ Host km
 Host kml
     User root
     HostName 192.168.1.209
+    ForwardAgent yes
 
 Host hd
 	User harry
@@ -46,10 +47,10 @@ Host hd
 	ProxyCommand ssh root@baz.codes nc %h %p
 	ForwardAgent yes
     LocalForward 8888 localhost:8888 
+    LocalForward 8889 localhost:8889
 
 Host hdl
     User harry
     Hostname hd.lan
     LocalForward 8888 localhost:8888
-    LocalForward 6006 localhost:6006
 
