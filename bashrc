@@ -56,23 +56,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ -d "/home/$USER/miniconda3" ]; then
-# >>> conda initialize >>>
-    __conda_setup="$('/home/$USER/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/$USER/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/$USER/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/h/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-# <<< conda initialize <<<
-fi
-
 git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -130,13 +113,13 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-# if ! shopt -oq posix; then
-#   if [ -f /usr/share/bash-completion/bash_completion ]; then
-#     . /usr/share/bash-completion/bash_completion
-#   elif [ -f /etc/bash_completion ]; then
-#     . /etc/bash_completion
-#   fi
-# fi
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 NVM_DIR="$HOME/.nvm"
 
@@ -179,6 +162,7 @@ kubectl () {
 }
 
 alias k=kubectl
+
 
 # HELM Lazy load
 
@@ -243,4 +227,21 @@ fi
 # Activate default virtual env
 if [[ -f ~/.venv/bin/activate ]]; then
     source ~/.venv/bin/activate
+elif [ -d "/home/$USER/miniconda3" ]; then
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/harry/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/harry/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/harry/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/harry/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
 fi
+
+export GPG_TTY=/dev/pts/3

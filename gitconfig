@@ -1,11 +1,14 @@
 [user]
 	email = himion0@gmail.com
-    name = Harry
+    name = Harry Coultas Blum
+	signingkey = BD5C0F5524101559
 [log]
-  date = relative
+    date = relative
 [format]
-  pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
+    pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
 [core]
-	attributesfile = /home/harry/.gitattributes
+    attributesfile = /home/harry/.gitattributes
+[commit]
+    gpgsign = true
 [pull]
-	rebase = false
+	ebase = false

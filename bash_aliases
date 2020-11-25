@@ -9,6 +9,8 @@ function edb {
 alias l='ls -alF'
 alias ..='cd ..'
 
+#Telgram CLI
+alias tg='telegram-cli -N'
 
 alias c='clear'
 alias edba='edb aliases'
@@ -20,9 +22,8 @@ alias vrc='vim ~/.vimrc'
 alias v='vim'
 
 alias o='xdg-open '
-alias t='konsole'
+alias t='tmux'
 alias dc='docker-compose'
-alias condac='conda create -y -n $(basename $PWD) python=3.7 > /dev/null && conda activate $(basename $PWD)'
 alias condaa='conda activate $(basename $PWD) > /dev/null 2>&1 || condac'
 alias condar='conda activate base && conda env remove -n $(basename $PWD)'
 alias jn='jupyter notebook'
@@ -34,11 +35,16 @@ alias wn1='watch -n 1'
 alias myip='curl https://api.ipify.org'
 alias grep='rg'
 
+# Clear ssh connection sockers
 alias cssh='rm -r /tmp/ssh-*'
 
+# GIT
+alias gs="git status"
+
+# Python
 alias p='python'
 
-# Clear swap files
+# Clear swap files in vim
 alias vimclear='rm -r ~/.vim/swap/*.swp'
 
 # Search History for commands matching the expression
@@ -100,6 +106,12 @@ venv() {
             cp -r ~/.venv/lib .venv/
         fi
     fi
+}
+
+function condac {
+    conda create -y -n $(basename $PWD) python=3.8 > /dev/null
+    conda activate $(basename $PWD)
+    pip install jedi black isort pdbpp > /dev/null
 }
 
 battery() {
