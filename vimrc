@@ -1,9 +1,6 @@
 "vim-plug to install plugins
 call plug#begin('~/.vim/plugged')
 
-"File Explorer
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
 "Fuzzy File Finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -44,7 +41,7 @@ set hidden
 set nobackup
 set nowritebackup
 set hlsearch
-set cmdheight=1
+set cmdheight=2
 set mouse=a
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " " delays and poor user experience.
@@ -53,7 +50,7 @@ set updatetime=300
 "Keybindings
 " map <C> :NERDTreeToggle<CR>
 map  <C-n> :tabnew<CR>
-map <C-p> :GFiles<CR>
+map <C-p> :Files<CR>
 map <C-F> :Rg<CR>
 
 "use <tab> for trigger completion and navigate to the next complete item
@@ -82,7 +79,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 
-set laststatus=1
 set statusline=
 set statusline+=%7*\[%n]                                  "buffernr
 set statusline+=%1*\ %<%F\                                "File+path
@@ -130,7 +126,7 @@ nnoremap <silent><CR> :noh<CR><CR>
 
 " Runs the string in the environment variale when \ + Enter is
 " pressed. For example, `export VMCD=python main.py`
-map <buffer> <leader><Enter> :w<CR>:! $VCMD<CR>
+map <silent> <buffer> <leader><Enter> :w<CR>:! eval $VCMD<CR>
 
 " Choose python interpreter
 if $CONDA_PREFIX == ""
@@ -148,11 +144,8 @@ call coc#config('python', {'pythonPath': s:current_python_path})
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 
-
 " Fix the cursor in the middle of the screen
 set so=999
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Show code documentation
 function! s:show_documentation()
@@ -169,3 +162,12 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" Allows writing to files with root priviledges
+cmap w!! w !sudo tee % > /dev/null <CR>
+
+" Overwrite the :X to be :x to prevent typos 
+" aswell as Q for quit
+"
+cmap X x
+cmap Q q
