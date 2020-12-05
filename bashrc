@@ -151,13 +151,31 @@ for cmd in "${NODE_GLOBALS[@]}"; do
   fi
 done
 
-
-source <(command kubectl completion bash)
+kubectl () {
+    command kubectl $*
+    if [[ -z $KUBECTL_COMPLETE ]]
+    then
+        source <(command kubectl completion bash)
+        KUBECTL_COMPLETE=1 
+		complete -F __start_kubectl k
+    fi
+}
 
 alias k=kubectl
 
-complete -F __start_kubectl k
 
+# HELM Lazy load
+
+helm () {
+    command helm $*
+    if [[ -z $_HELM_COMPLETE ]] 
+    then
+        source <(command helm completion bash)
+        _HELM_COMPLETE=1
+    fi
+}
+
+# Setup fzf bash
 . ~/.fzf.bash
 
 if type rg &> /dev/null; then
@@ -188,6 +206,16 @@ pip () {
     fi
 }
 
+docker () {
+    command docker $*
+    if [[ -z $_DOCKER_COMPLETE ]]
+    then
+        sudo systemctl start docker
+        sudo systemctl start containerd
+        _DOCKER_COMPLETE=1
+    fi
+}
+
 # Save bash history 
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
@@ -196,7 +224,10 @@ if type gh &> /dev/null; then
     source <(gh completion -s bash)
 fi
 
-if [ -d "/home/$USER/miniconda3" ]; then
+# Activate default virtual env
+if [[ -f ~/.venv/bin/activate ]]; then
+    source ~/.venv/bin/activate
+elif [ -d "/home/$USER/miniconda3" ]; then
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/home/harry/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -213,6 +244,4 @@ if [ -d "/home/$USER/miniconda3" ]; then
     # <<< conda initialize <<<
 fi
 
-export GPG_TTY=/dev/pts/3
-
-# [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+export GPG_TTY=$(tty)
