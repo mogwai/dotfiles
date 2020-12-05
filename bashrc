@@ -162,7 +162,7 @@ complete -F __start_kubectl k
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs'
-  export FZF_DEFAULT_OPTS='-m --height 50%'
+  export FZF_DEFAULT_OPTS='-m --height 50% --preview "batcat --style=numbers --color=always --line-range :500 {}"'
 fi
 
 # GoLang
