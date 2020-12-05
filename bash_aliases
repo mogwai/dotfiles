@@ -9,6 +9,8 @@ function edb {
 alias l='ls -alF'
 alias ..='cd ..'
 
+
+
 #Telgram CLI
 alias tg='telegram-cli -N'
 
@@ -19,6 +21,10 @@ alias eb='vim ~/.bashrc && source ~/.bashrc'
 alias essh='vim ~/.ssh/config'
 
 alias vf='vim $(fzf)'
+
+# Find file with contents
+
+alias f="rg . --vimgrep --color ansi | fzf --ansi --preview ''"
 alias vrc='vim ~/.vimrc'
 alias v='vim'
 
