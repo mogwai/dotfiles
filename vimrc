@@ -171,3 +171,6 @@ cmap w!! w !sudo tee % > /dev/null <CR>
 "
 cmap X x
 cmap Q q
+
+vnoremap > >gv
+vnoremap < <gv
