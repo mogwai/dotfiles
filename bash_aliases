@@ -71,6 +71,7 @@ rmnodem() {
 # Prevents vim from opening files that don't exist without
 # the --new flag
 vim() {
+    load_nvm
     local args=("$@")
     local new=0
 
@@ -118,6 +119,7 @@ function condac {
     conda create -y -n $(basename $PWD) python=3.8 > /dev/null
     conda activate $(basename $PWD)
     pip install jedi black isort pdbpp > /dev/null
+    conda install -c tartansandal conda-bash-completion -y
 }
 
 battery() {

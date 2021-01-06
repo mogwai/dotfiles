@@ -22,7 +22,6 @@ HISTFILESIZE=
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
@@ -226,18 +225,18 @@ fi
 
 # Activate default virtual env
 if [[ -f ~/.venv/bin/activate ]]; then
-    source ~/.venv/bin/activate
+    source ~/.venv/bin/activate 
 elif [ -d "/home/$USER/miniconda3" ]; then
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/harry/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$('/home/'$USER'/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/home/harry/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/harry/miniconda3/etc/profile.d/conda.sh"
+        if [ -f "/home/$USER/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/$USER/miniconda3/etc/profile.d/conda.sh"
         else
-            export PATH="/home/harry/miniconda3/bin:$PATH"
+            export PATH="/home/$USER/miniconda3/bin:$PATH"
         fi
     fi
     unset __conda_setup
@@ -245,3 +244,4 @@ elif [ -d "/home/$USER/miniconda3" ]; then
 fi
 
 export GPG_TTY=$(tty)
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

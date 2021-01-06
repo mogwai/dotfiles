@@ -54,3 +54,7 @@ Host hdl
     Hostname hd.lan
     LocalForward 8888 localhost:8888
 
+Host sonantic
+ HostName ec2-3-249-227-209.eu-west-1.compute.amazonaws.com
+ IdentityFile ~/.ssh/trial_day.pem
+ User ubuntu

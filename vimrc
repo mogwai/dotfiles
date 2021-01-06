@@ -21,6 +21,9 @@ Plug 'morhetz/gruvbox'
 "using \ + /
 Plug 'tpope/vim-commentary'
 
+" Pydoc string
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
+
 call plug#end()
 
 "gruvbox color theme
