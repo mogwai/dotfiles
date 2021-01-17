@@ -24,6 +24,8 @@ Plug 'tpope/vim-commentary'
 " Pydoc string
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
+Plug 'https://github.com/tpope/vim-sleuth' 
+
 call plug#end()
 
 "gruvbox color theme
