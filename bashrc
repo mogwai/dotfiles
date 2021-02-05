@@ -250,13 +250,13 @@ export GPG_TTY=$(tty)
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# # SSH Agent
-# if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-#   eval `ssh-agent` > /dev/null
-#   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-# fi
-# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-# ssh-add -l > /dev/null || ssh-add > /dev/null
+# SSH Agent
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent` > /dev/null
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || ssh-add > /dev/null
 
 # load powerline
 if [ -f `which powerline-daemon` ]; then
