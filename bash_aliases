@@ -2,13 +2,24 @@ export EDITOR=vim
 
 # Edit bash script
 function edb {
-    vim ~/.bash_$1 && source ~/.bash_$1 
+    vim ~/.bash_$1 && source ~/.bash_$1
 }
 
-# some more ls aliases
-alias l='ls -alF'
+function apt {
+    if [ -f `which apt-fast` ]; then
+        apt-fast $@
+    else
+        apt $@
+    fi
+}
+
+# ls aliases
+alias l='ls -ahlF'
+alias lt='ls -ahlFtr'
 alias ..='cd ..'
 
+# Random File from dir
+alias rand='find . -type f | shuf -n 1'
 
 
 #Telgram CLI
@@ -30,8 +41,11 @@ alias v='vim'
 alias o='xdg-open '
 alias t='tmux'
 alias dc='docker-compose'
+
+# Conda
 alias condaa='conda activate $(basename $PWD) > /dev/null 2>&1 || condac'
 alias condar='conda activate base && conda env remove -n $(basename $PWD)'
+alias condals='conda env list'
 alias jn='jupyter notebook'
 alias jna='condaa && pip install notebook && jn'
 alias clip='xclip -i -sel c'
@@ -42,7 +56,7 @@ alias myip='curl https://api.ipify.org'
 alias grep='rg'
 
 # Clear ssh connection sockers
-alias cssh='rm -r /tmp/ssh-*'
+alias cssh='rm -r /tmp/ssh-*@*'
 
 # GIT
 alias gs="git status"
@@ -56,7 +70,7 @@ alias vimclear='rm -r ~/.vim/swap/*.swp'
 # Search History for commands matching the expression
 
 fh() {
-    history | awk '{$1=""; print substr($0,2)}'| rg $1   
+    history | awk '{$1=""; print substr($0,2)}'| rg $1
 }
 
 

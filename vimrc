@@ -11,20 +11,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf.vim'
 
 "Autocomplete, Formatting, Linting
-"Make sure that you :CocInstall coc-python for python 
+"Make sure that you :CocInstall coc-python for python
 "and any other lagauge that you are interested in using
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Theme
 Plug 'morhetz/gruvbox'
-"Comment blocks after entering Visual Block Mode <C-l> 
+"Comment blocks after entering Visual Block Mode <C-l>
 "using \ + /
 Plug 'tpope/vim-commentary'
 
 " Pydoc string
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
-Plug 'https://github.com/tpope/vim-sleuth' 
+Plug 'https://github.com/tpope/vim-sleuth'
+
+Plug 'zivyangll/git-blame.vim'
 
 call plug#end()
 
@@ -90,7 +92,7 @@ set statusline+=%1*\ %<%F\                                "File+path
 set statusline+=%2*\ %y\                                  "FileType
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
+set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
 set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
 set statusline+=%9*\ col:%03c\                            "Colnr
 set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
@@ -101,7 +103,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 "Setup ripgrep
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
-"Use the current direcotry 
+"Use the current direcotry
 let g:rg_derive_root='true'
 
 noremap <leader>/ :Commentary<cr>
@@ -117,7 +119,7 @@ imap <C-v> <ESC>"+pa
 
 "Enable Persistent Undo
 if has('persistent_undo')      "check if your vim version supports it
-  set undofile                 "turn on the feature  
+  set undofile                 "turn on the feature
   set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
   endif
 
@@ -171,7 +173,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Allows writing to files with root priviledges
 cmap w!! w !sudo tee % > /dev/null <CR>
 
-" Overwrite the :X to be :x to prevent typos 
+" Overwrite the :X to be :x to prevent typos
 " aswell as Q for quit
 "
 cmap X x
@@ -179,3 +181,9 @@ cmap Q q
 
 vnoremap > >gv
 vnoremap < <gv
+
+" Auto remove whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
+:nmap <leader>b :call gitblame#echo()<CR>
+

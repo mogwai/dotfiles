@@ -8,5 +8,5 @@ curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
 printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing
 
 # Update and install syncthing:
-sudo apt-get update
-sudo apt-get install syncthing
+sudo apt update
+sudo apt install syncthing
