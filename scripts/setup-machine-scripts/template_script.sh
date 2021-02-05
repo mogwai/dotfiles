@@ -81,23 +81,22 @@ npm i $extensions --global-stylus --ignore-scripts --no-bin-links --no-package-l
 # Back to home directory
 cd
 
-# SSH Keys
-SSH_KEY="'$SSH_KEY'"
-SSH_KEY_PUB="'$SSH_KEY_PUB'"
-echo $SSH_KEY
-if [ $SSH_KEY != "\'\'" ]; then
-  read -n 1 -p "Install SSH keys? (y/n): " input
-  echo \n
+# # SSH Keys
+# SSH_KEY="'$SSH_KEY'"
+# SSH_KEY_PUB="'$SSH_KEY_PUB'"
+# echo $SSH_KEY
+# if [ $SSH_KEY != "\'\'" ]; then
+#   read -n 1 -p "Install SSH keys? (y/n): " input
+#   echo \n
 
-  if [[ $input == "Y" || $input == "y" ]]; then
-    mkdir -p ~/.ssh
-    printf '%s' "$SSH_KEY" >> ~/.ssh/id_rsa
-    printf '%s' "$SSH_KEY_PUB" >> ~/.ssh/id_rsa.pub
-    chmod 0600 ~/.ssh/id_rsa
-  fi
-fi
+#   if [[ $input == "Y" || $input == "y" ]]; then
+#     mkdir -p ~/.ssh
+#     printf '%s' "$SSH_KEY" >> ~/.ssh/id_rsa
+#     printf '%s' "$SSH_KEY_PUB" >> ~/.ssh/id_rsa.pub
+#     chmod 0600 ~/.ssh/id_rsa
+#   fi
+# fi
 
 # Install dotfiles
-git clone git@github.com:mogwai/dotfiles
-cd dotfiles
-bash link.sh
+git clone git@github.com:mogwai/dotfiles ~/dotfiles
+bash ~/dotfiles/link.sh
