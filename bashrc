@@ -226,7 +226,9 @@ if type gh &> /dev/null; then
 fi
 
 # Activate default virtual env
-if [ -d "/home/$USER/miniconda3" ]; then
+if [[ -f ~/.venv/bin/activate ]]; then
+    source ~/.venv/bin/activate  # commented out by conda initialize
+elif [ -d "/home/$USER/miniconda3" ]; then
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/home/'$USER'/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -241,11 +243,10 @@ if [ -d "/home/$USER/miniconda3" ]; then
     fi
     unset __conda_setup
     # <<< conda initialize <<<
-elif [[ -f ~/.venv/bin/activate ]]; then
-    source ~/.venv/bin/activate
 fi
 
 export GPG_TTY=$(tty)
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 

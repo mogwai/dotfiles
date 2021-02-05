@@ -24,9 +24,10 @@ Plug 'tpope/vim-commentary'
 " Pydoc string
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
-Plug 'https://github.com/tpope/vim-sleuth'
-
 Plug 'zivyangll/git-blame.vim'
+
+" Auto indentation
+Plug 'https://github.com/tpope/vim-sleuth'
 
 call plug#end()
 
