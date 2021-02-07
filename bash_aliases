@@ -40,6 +40,7 @@ alias kc='kubectl'
 alias wn1='watch -n 1'
 alias myip='curl https://api.ipify.org'
 alias grep='rg'
+alias hear='cvlc --play-and-exit'
 
 # Clear ssh connection sockers
 alias cssh='rm -r /tmp/ssh-*'
