@@ -267,3 +267,13 @@ fi
 if [ -f /usr/local/lib/python3.8/dist-packages/powerline/bindings/bash/powerline.sh ]; then
     source /usr/local/lib/python3.8/dist-packages/powerline/powerline/bindings/bash/powerline.sh
 fi
+
+# Activate conda environment if there is one
+basename=$(basename $PWD)
+if [[ -f .venv/bin/activate ]]; then
+    source .venv/bin/activate
+elif [[ -d ~/miniconda3/envs/$basename ]]; then
+    echo $basename
+    conda activate $basename > /dev/null
+fi
+
