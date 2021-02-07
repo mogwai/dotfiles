@@ -273,7 +273,6 @@ basename=$(basename $PWD)
 if [[ -f .venv/bin/activate ]]; then
     source .venv/bin/activate
 elif [[ -d ~/miniconda3/envs/$basename ]]; then
-    echo $basename
     conda activate $basename > /dev/null
 fi
 
