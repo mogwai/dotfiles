@@ -58,9 +58,9 @@ fi
 git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
- 
+
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00;32m\]\$(git_branch)\[\033[00m\] \$ "
+    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\u@\h:\W\[\033[00;32m\]\$(git_branch)\[\033[00m\] \$ "
 
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -155,19 +155,18 @@ kubectl () {
     if [[ -z $KUBECTL_COMPLETE ]]
     then
         source <(command kubectl completion bash)
-        KUBECTL_COMPLETE=1 
+        KUBECTL_COMPLETE=1
 		complete -F __start_kubectl k
     fi
 }
 
 alias k=kubectl
 
-
 # HELM Lazy load
 
 helm () {
     command helm $*
-    if [[ -z $_HELM_COMPLETE ]] 
+    if [[ -z $_HELM_COMPLETE ]]
     then
         source <(command helm completion bash)
         _HELM_COMPLETE=1
@@ -175,7 +174,10 @@ helm () {
 }
 
 # Setup fzf bash
-. ~/.fzf.bash
+if [[ -f ~/.fzf.bash ]]
+then
+  . ~/.fzf.bash
+fi
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs'
@@ -201,7 +203,7 @@ pip () {
     if [[ -z $_PIP_COMPLETE ]]
     then
         source <(command pip completion --bash)
-        _PIP_COMPLETE=1 
+        _PIP_COMPLETE=1
     fi
 }
 
@@ -215,7 +217,7 @@ docker () {
     fi
 }
 
-# Save bash history 
+# Save bash history
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
@@ -247,13 +249,14 @@ export GPG_TTY=$(tty)
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+# SSH Agent
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent`
+  eval `ssh-agent` > /dev/null
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l > /dev/null || ssh-add
-
+ssh-add -l > /dev/null || ssh-add > /dev/null
 
 # load powerline
 if [ -f `which powerline-daemon` ]; then

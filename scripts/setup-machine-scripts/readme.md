@@ -6,15 +6,14 @@ Scripts to speed up setting up a new debian based machine.
 
 ## Introduction
 
-This will make a setup script that includes your ssh keys and asks you to protect them before they are added. This is to make sure that if the script is compromised, there will be a layer of protection on them. 
+This will make a setup script that includes your ssh keys and asks you to protect them before they are added. This is to make sure that if the script is compromised, there will be a layer of protection on them.
 
 ** Includes **
 
 - vim for python, json and yaml files
-- tmux 
+- tmux
 - htop, ncdu
 - nvm (Node version manager)
-- Anaconda
 - curl
 
 ## Usage
@@ -28,7 +27,7 @@ bash make_script.sh
 This will create an `install.sh` script that you can put somewhere:
 
 ```
-curl -L https://mywebservice.com/install.sh | bash 
+curl -L https://mywebservice.com/install.sh | bash
 ```
 
 
