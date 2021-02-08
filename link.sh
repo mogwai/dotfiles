@@ -1,6 +1,6 @@
 #/bin/bash
 
-files="bashrc bash_aliases vimrc tmux.conf gitconfig pdbrc.py gitattributes"
+files="bashrc bash_aliases vimrc tmux.conf gitconfig pdbrc.py gitattributes htoprc"
 
 for i in $files; do
     mv ~/.$i ~/.$i.bak

@@ -32,6 +32,9 @@ Plug 'https://github.com/tpope/vim-sleuth'
 " Indentation Guides
 Plug 'nathanaelkane/vim-indent-guides'
 
+" Open files with line number file.txt:123
+Plug 'kopischke/vim-fetch'
+
 call plug#end()
 
 "gruvbox color theme
