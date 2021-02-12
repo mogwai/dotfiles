@@ -1,7 +1,7 @@
 [user]
-	email = himion0@gmail.com
+    email = 5440566+mogwai@users.noreply.github.com
     name = Harry Coultas Blum
-	signingkey = BD5C0F5524101559
+    signingkey = BD5C0F5524101559
 [log]
     date = relative
 [format]
@@ -18,8 +18,7 @@
     ; minus-color = "#340001"
     ; syntax-theme = Monokai Extended
     side-by-side = true
-
 [interactive]
     diffFilter = delta --color-only
 [submodule]
-	recurse = true
+    recurse = true
