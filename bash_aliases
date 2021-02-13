@@ -140,3 +140,12 @@ function condac {
 battery() {
     upower -i /org/freedesktop/UPower/devices/battery_cw2015_battery | grep percent | awk '{print $2}'
 }
+
+
+
+# AWS
+
+ec2start() {
+    id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tags[0].Value, dns: .PublicDnsName } | select(.name|test("'$1'")).id'`
+    aws ec2 start-instances --instance-id $id
+}
