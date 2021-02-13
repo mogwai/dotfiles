@@ -1,7 +1,7 @@
 [user]
     email = 5440566+mogwai@users.noreply.github.com
     name = Harry Coultas Blum
-    signingkey = BD5C0F5524101559
+    signingkey = 7AE527115C7DBBA8
 [log]
     date = relative
 [format]
@@ -10,7 +10,7 @@
     attributesfile = /home/harry/.gitattributes
     ; pager = delta
 [commit]
-    ; gpgsign = true
+    gpgsign = true
 [pull]
     rebase = false
 [delta]
