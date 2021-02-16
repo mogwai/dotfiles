@@ -209,7 +209,7 @@ pip () {
 
 docker () {
     command docker $*
-    if [[ -z $_DOCKER_COMPLETE ]]
+    if [[ -z `service docker status` ]] || [[ -z `service containerd status` ]]
     then
         sudo systemctl start docker
         sudo systemctl start containerd
