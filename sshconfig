@@ -1,8 +1,9 @@
 Host *
-	StrictHostKeyChecking no
+    StrictHostKeyChecking no
     ControlMaster auto
- 	ControlPath /tmp/ssh-%r@%h:%pA
+    ControlPath /tmp/ssh-%r@%h:%pA
     ControlPersist yes
+    ForwardAgent yes
     ServerAliveInterval 10
 
 Host fd-vpn
@@ -14,47 +15,80 @@ Host labs
     HostName 10.8.0.6
     ProxyCommand ssh root@labs.firedroplabs.com nc %h %p
     User h
-    ForwardAgent yes
 
 # Personal
-# ======== 
+# ========
 Host vpn
     User root
-    HostName baz.codes
+    HostName 159.65.214.107
 #
 Host mail
     User root
     Hostname mail.baz.codes
 
+Host openwrt
+    User root
+    Hostname 192.168.1.1
+
 Host openwrtr
-	User root
-	Hostname 192.168.1.1
-	ProxyCommand ssh root@baz.codes nc %h %p
+    Hostname openwrt
+    ProxyCommand ssh root@baz.codes nc %h %p
 
 Host km
-	User root 
-	Hostname 192.168.1.209
-	ProxyCommand ssh root@baz.codes nc %h %p
+    Hostname 192.168.1.209
+    ProxyCommand ssh root@baz.codes nc %h %p
 
 Host kml
-    User root
     HostName 192.168.1.209
-    ForwardAgent yes
 
 Host hd
-	User harry
-	Hostname 192.168.1.121
-	ProxyCommand ssh root@baz.codes nc %h %p
-	ForwardAgent yes
-    LocalForward 8888 localhost:8888 
-    LocalForward 8889 localhost:8889
+    Hostname 192.168.1.121
+    ProxyCommand ssh root@baz.codes nc %h %p
 
 Host hdl
-    User harry
     Hostname hd.lan
-    LocalForward 8888 localhost:8888
 
-Host sonantic
- HostName ec2-3-249-227-209.eu-west-1.compute.amazonaws.com
- IdentityFile ~/.ssh/trial_day.pem
- User ubuntu
+Host n1
+    Hostname node1.lan
+
+# Sonantic
+
+Host newton
+    Hostname 77.102.113.23
+    User harry
+    Port 23
+
+Host fourier
+    Hostname 77.102.113.23
+    User harry
+    Port 22
+
+Host ada
+    Hostname 77.102.113.23
+    User harry
+    Port 24
+
+# Sonantic AWS
+
+Host beaver
+    Hostname beaver.rig.sonantic.io
+    User ubuntu
+    IdentityFile /home/h/.ssh/p2_single_gpu.pem
+
+Host euler
+    Hostname euler.rig.sonantic.io
+    IdentityFile /home/h/.ssh/p2_single_gpu.pem
+
+Host feynman
+    Hostname feynman.rig.sonantic.io
+    IdentityFile /home/h/.ssh/p2_single_gpu.pem
+
+Host curie
+    Hostname curie.rig.sonantic.io
+    User ubuntu
+
+Host noether
+    Hostname noether.rig.sonantic.io
+    User ubuntu
+    IdentityFile ~/.ssh/p2_single_gpu.pem
+

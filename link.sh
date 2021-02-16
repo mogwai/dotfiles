@@ -9,5 +9,5 @@ done
 
 
 mv ~/.ssh/config ~/.ssh/config.bak
-ln -s $(pwd)/sshconfig ~/.ssh/config
+ln -s ~/dotfiles/sshconfig ~/.ssh/config
 
