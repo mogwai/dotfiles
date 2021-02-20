@@ -213,7 +213,6 @@ docker () {
     then
         sudo systemctl start docker
         sudo systemctl start containerd
-        _DOCKER_COMPLETE=1
     fi
 }
 
@@ -225,49 +224,19 @@ if type gh &> /dev/null; then
     source <(gh completion -s bash)
 fi
 
-# Activate default virtual env
-if [[ -f ~/.venv/bin/activate ]]; then
-    source ~/.venv/bin/activate  # commented out by conda initialize
-elif [ -d "/home/$USER/miniconda3" ]; then
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/'$USER'/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/$USER/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/$USER/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/$USER/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-fi
-
 export GPG_TTY=$(tty)
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
 # SSH Agent
-if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent` > /dev/null
-  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# Checks if there is a connection already before creating a
+# new agent and auth sock
+if [ -z ${SSH_CONNECTION+x} ]; then
+  if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+    eval `ssh-agent` > /dev/null
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  fi
+  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+  ssh-add -l > /dev/null || ssh-add > /dev/null
 fi
-
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l > /dev/null || ssh-add > /dev/null
-
-# load powerline
-# if [ -f `which powerline-daemon` ]; then
-#     powerline-daemon -q
-#     POWERLINE_BASH_CONTINUATION=1
-#     POWERLINE_BASH_SELECT=1
-# fi
-# if [ -f /usr/local/lib/python3.8/dist-packages/powerline/bindings/bash/powerline.sh ]; then
-#     source /usr/local/lib/python3.8/dist-packages/powerline/powerline/bindings/bash/powerline.sh
-# fi
 
 # Activate conda environment if there is one
 basename=$(basename $PWD)

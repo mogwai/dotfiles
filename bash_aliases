@@ -1,4 +1,3 @@
-export EDITOR=vim
 
 # Edit bash script
 function edb {
@@ -31,15 +30,14 @@ alias edbp='edb profile'
 alias eb='vim ~/.bashrc && source ~/.bashrc'
 alias essh='vim ~/.ssh/config'
 
-
-# Find file with contents
-alias f="rg . --vimgrep --color ansi | fzf --ansi --preview ''"
+# Nvidia
+alias nv='nvidia-smi'
 
 alias vrc='vim ~/.vimrc'
 alias v='vim'
 
-alias o='xdg-open '
-alias t='tmux'
+alias o='xdg-open'
+alias t='tmux new -s $(basename $PWD)'
 alias dc='docker-compose'
 
 # Conda
@@ -141,9 +139,10 @@ battery() {
     upower -i /org/freedesktop/UPower/devices/battery_cw2015_battery | grep percent | awk '{print $2}'
 }
 
-
-
 # AWS
+ec2ls(){
+    aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tag}'
+}
 
 ec2start() {
     id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tags[0].Value, dns: .PublicDnsName } | select(.name|test("'$1'")).id'`

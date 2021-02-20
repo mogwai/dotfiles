@@ -5,6 +5,7 @@ Host *
     ControlPersist yes
     ForwardAgent yes
     ServerAliveInterval 10
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent.extra ~/.ssh/gpg-sock
 
 Host fd-vpn
     Controlmaster auto
@@ -89,6 +90,6 @@ Host curie
 
 Host noether
     Hostname noether.rig.sonantic.io
-    User ubuntu
+    User harry
     IdentityFile ~/.ssh/p2_single_gpu.pem
 
