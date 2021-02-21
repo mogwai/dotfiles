@@ -33,7 +33,7 @@ s echo debconf apt-fast/maxdownloads string 20 | s debconf-set-selections
 s echo debconf apt-fast/dlflag boolean false | s debconf-set-selections
 s echo debconf apt-fast/aptmanager string apt | s debconf-set-selections
 
-s apt-fast install -y git curl vim-gtk ncdu htop build-essential tmux python3-pip python3.8 python3-apt
+s apt-fast install -y git curl vim-gtk ncdu htop build-essential tmux python3-pip python3.8 python3-apt python3-venv
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -43,9 +43,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 s dpkg -i ripgrep_12.1.1_amd64.deb
-rm ripgrep_12.1.1_amd64
+rm ripgrep_12.1.1_amd64.deb
 
-# s update-alternatives --install /usr/bin/python python /usr/bin/python3.8 0
+s update-alternatives --install /usr/bin/python python /usr/bin/python3.8 0
 
 # Install Node
 curl https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
@@ -81,22 +81,4 @@ npm i $extensions --global-stylus --ignore-scripts --no-bin-links --no-package-l
 # Back to home directory
 cd
 
-# # SSH Keys
-# SSH_KEY="'$SSH_KEY'"
-# SSH_KEY_PUB="'$SSH_KEY_PUB'"
-# echo $SSH_KEY
-# if [ $SSH_KEY != "\'\'" ]; then
-#   read -n 1 -p "Install SSH keys? (y/n): " input
-#   echo \n
-
-#   if [[ $input == "Y" || $input == "y" ]]; then
-#     mkdir -p ~/.ssh
-#     printf '%s' "$SSH_KEY" >> ~/.ssh/id_rsa
-#     printf '%s' "$SSH_KEY_PUB" >> ~/.ssh/id_rsa.pub
-#     chmod 0600 ~/.ssh/id_rsa
-#   fi
-# fi
-
-# Install dotfiles
-git clone git@github.com:mogwai/dotfiles ~/dotfiles
 bash ~/dotfiles/link.sh
