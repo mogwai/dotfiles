@@ -10,7 +10,7 @@
     attributesfile = /home/harry/.gitattributes
     ; pager = delta
 [commit]
-    ; gpgsign = true
+    gpgsign = true
 [pull]
     rebase = false
 [delta]
