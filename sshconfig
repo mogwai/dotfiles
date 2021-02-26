@@ -1,11 +1,12 @@
 Host *
     StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
     ControlMaster auto
     ControlPath /tmp/ssh-%r@%h:%pA
     ControlPersist yes
     ForwardAgent yes
     ServerAliveInterval 10
-    RemoteForward /run/user/1000/gnupg/S.gpg-agent.extra ~/.ssh/gpg-sock
+    # RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
 
 Host fd-vpn
     Controlmaster auto
@@ -93,3 +94,5 @@ Host noether
     User harry
     IdentityFile ~/.ssh/p2_single_gpu.pem
 
+Host *.compute.amazonaws.com
+    User ubuntu

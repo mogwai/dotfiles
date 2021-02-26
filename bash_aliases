@@ -38,6 +38,7 @@ alias v='vim'
 
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
+alias ta='tmux a'
 alias dc='docker-compose'
 
 # Conda
@@ -59,6 +60,17 @@ alias cssh='rm -r /tmp/ssh-*@*'
 
 # GIT
 alias gs="git status"
+alias gp="git pull"
+
+gcm() {
+    git commit -m "$1"
+}
+
+gcma() {
+    git commit -am "$1"
+}
+
+
 
 # Python
 alias p='python'
@@ -139,12 +151,40 @@ battery() {
     upower -i /org/freedesktop/UPower/devices/battery_cw2015_battery | grep percent | awk '{print $2}'
 }
 
-# AWS
+##### AWS #####
+
+# List EC2 Instances
 ec2ls(){
-    aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tag}'
+    aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.State.Name=="running") | .Tags[0].Value'
 }
 
+# Start EC2 Instance by name
 ec2start() {
-    id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tags[0].Value, dns: .PublicDnsName } | select(.name|test("'$1'")).id'`
-    aws ec2 start-instances --instance-id $id
+    if [ -n "$1" ]; then
+        id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tags[0].Value, dns: .PublicDnsName } | select(.name|test("'$1'")).id'`
+        aws ec2 start-instances --instance-id $id
+    fi
+}
+
+# Kill Distractions
+kd(){
+    pkill slack
+    pkill telegram
+    pkill joplin
+    pkill pia
+    pkill thunderbird
+    pkill discord
+    pkill steam
+}
+
+
+wf(){
+    out=`nmcli radio wifi`
+    if [[ "$out" == "enabled" ]]; then
+        nmcli radio wifi off
+        echo Wifi disabled
+    else
+        nmcli radio wifi on
+        echo Wifi enabled
+    fi
 }
