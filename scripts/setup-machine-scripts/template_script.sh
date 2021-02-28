@@ -5,6 +5,9 @@
 # Description
 # ===========
 # A tool to setup bare bones for machine being worked on
+current_dir=$(pwd)
+cd dotfiles
+bash link.sh
 
 set -e
 
@@ -64,10 +67,9 @@ mkdir -p ~/.config/coc
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +'PlugInstall' +qall
-echo y # Confirm continue
 
 # Coc Extensions
-extensions='coc-python coc-json coc-yaml'
+extensions='coc-jedi coc-json coc-yaml'
 mkdir -p ~/.config/coc/extensions
 cd  ~/.config/coc/extensions
 
@@ -78,7 +80,4 @@ fi
 
 npm i $extensions --global-stylus --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
-# Back to home directory
-cd
-
-bash ~/dotfiles/link.sh
+cd $current_dir
