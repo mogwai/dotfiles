@@ -53,9 +53,9 @@ let g:coc_disable_startup_warning = 1
 syntax enable
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set expandtab ts=4 sw=4 ai
 set number
-filetype indent on
+filetype plugin indent on
 set hidden
 set nobackup
 set nowritebackup
@@ -196,8 +196,10 @@ let g:indent_guides_guide_size = 1
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
+" Powerline
 let g:airline_powerline_fonts = 1
-
+let g:airline_theme='minimalist'
 set laststatus=1 " Always display the statusline in all windows
 set showtabline=0 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
