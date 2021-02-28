@@ -2,6 +2,7 @@ Host *
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
     ControlMaster auto
+    Compression yes
     ControlPath /tmp/ssh-%r@%h:%pA
     ControlPersist yes
     ForwardAgent yes
@@ -49,41 +50,43 @@ Host hd
 
 Host hdl
     Hostname hd.lan
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host n1
     Hostname node1.lan
 
 # Sonantic
+Host *.rig.sonantic.io
+    IdentityFile ~/.ssh/p2_single_gpu.pem
+
+Host self.rig.sonantic.io
+    User harry
 
 Host newton
-    Hostname 77.102.113.23
     User harry
+    Hostname self.rig.sonantic.io
     Port 23
 
 Host fourier
-    Hostname 77.102.113.23
     User harry
+    Hostname self.rig.sonantic.io
     Port 22
 
 Host ada
-    Hostname 77.102.113.23
     User harry
+    Hostname self.rig.sonantic.io
     Port 24
-
-# Sonantic AWS
 
 Host beaver
     Hostname beaver.rig.sonantic.io
     User ubuntu
-    IdentityFile /home/h/.ssh/p2_single_gpu.pem
 
 Host euler
     Hostname euler.rig.sonantic.io
-    IdentityFile /home/h/.ssh/p2_single_gpu.pem
 
 Host feynman
     Hostname feynman.rig.sonantic.io
-    IdentityFile /home/h/.ssh/p2_single_gpu.pem
 
 Host curie
     Hostname curie.rig.sonantic.io
@@ -91,8 +94,11 @@ Host curie
 
 Host noether
     Hostname noether.rig.sonantic.io
-    User harry
-    IdentityFile ~/.ssh/p2_single_gpu.pem
 
 Host *.compute.amazonaws.com
     User ubuntu
+
+Host hopper
+    Hostname ec2-34-244-252-239.eu-west-1.compute.amazonaws.com
+    User harry
+

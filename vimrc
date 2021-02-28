@@ -35,6 +35,11 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Open files with line number file.txt:123
 Plug 'kopischke/vim-fetch'
 
+Plug 'powerline/powerline'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 "gruvbox color theme
@@ -55,7 +60,7 @@ set hidden
 set nobackup
 set nowritebackup
 set hlsearch
-set cmdheight=2
+set cmdheight=1
 set mouse=a
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " " delays and poor user experience.
@@ -91,19 +96,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 
 "Find all references
 nmap <silent> gr <Plug>(coc-references)
-
-
-set statusline=
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "File+path
-set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-set statusline+=%9*\ col:%03c\                            "Colnr
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
-set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
@@ -194,10 +186,18 @@ autocmd BufWritePre * %s/\s\+$//e
 
 :nmap <leader>b :call gitblame#echo()<CR>
 
-
 " Indent Guides on startup
 let g:indent_guides_enable_on_vim_startup = 1
 " let g:indent_guides_auto_colors = 0
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=white
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightgrey
 let g:indent_guides_guide_size = 1
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+let g:airline_powerline_fonts = 1
+
+set laststatus=1 " Always display the statusline in all windows
+set showtabline=0 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)

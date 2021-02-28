@@ -246,3 +246,8 @@ elif [[ -d ~/miniconda3/envs/$basename ]]; then
     conda activate $basename > /dev/null
 fi
 
+
+# if [ -f ~/.vim/plugged/powerline/powerline/bindings/bash/powerline.sh ]; then
+#     source ~/.vim/plugged/powerline/powerline/bindings/bash/powerline.sh
+# fi
+
