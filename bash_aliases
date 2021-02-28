@@ -74,6 +74,7 @@ gcma() {
 
 # Python
 alias p='python'
+alias pp='vim play.py --new'
 
 # Clear swap files in vim
 alias vimclear='rm -r ~/.vim/swap/*.swp'
@@ -178,7 +179,7 @@ kd(){
     pkill steam
 }
 
-
+# Wifi Toggle
 wf(){
     out=`nmcli radio wifi`
     if [[ "$out" == "enabled" ]]; then
@@ -190,6 +191,9 @@ wf(){
     fi
 }
 
+
+# Sonantic
+
 tts_path=~/sonantic
 year=$(date +'%Y')
 month=$(date +'%m')
@@ -197,3 +201,5 @@ month=$(date +'%m')
 # mkdir -p ${tts_path}/experiments/${year}_${month}/voc
 alias cdmel="cd ${tts_path}/experiments/${year}_${month}/mel"
 alias cdvoc="cd ${tts_path}/experiments/${year}_${month}/voc"
+
+D=~/desktop
