@@ -171,11 +171,13 @@ ec2start() {
 # Kill Distractions
 kd(){
     pkill slack
+    pkill signal
+    pkill web-torrent
     pkill telegram
     pkill joplin
     pkill pia
     pkill thunderbird
-    pkill discord
+    pkill Discord
     pkill steam
 }
 
