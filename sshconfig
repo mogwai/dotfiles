@@ -93,6 +93,7 @@ Host curie
     User ubuntu
 
 Host noether
+    User harry
     Hostname noether.rig.sonantic.io
 
 Host *.compute.amazonaws.com
@@ -102,3 +103,6 @@ Host hopper
     Hostname ec2-34-244-252-239.eu-west-1.compute.amazonaws.com
     User harry
 
+Host jackson
+    User ubuntu
+    Hostname ec2-34-255-116-35.eu-west-1.compute.amazonaws.com
