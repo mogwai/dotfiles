@@ -40,7 +40,7 @@ s apt-fast install -y git curl vim-gtk ncdu htop build-essential tmux python3-pi
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --key-bindings --completion
 
 # Ripgrep
 
@@ -79,5 +79,10 @@ then
 fi
 
 npm i $extensions --global-stylus --ignore-scripts --no-bin-links --no-package-lock --only=prod
+
+cd
+source ~/.bashrc
+venv
+pip install powerline-status
 
 cd $current_dir
