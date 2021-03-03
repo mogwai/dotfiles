@@ -157,7 +157,12 @@ battery() {
 
 # List EC2 Instances
 ec2ls(){
-    aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.State.Name=="running") | .Tags[0].Value'
+    instances=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.State.Name=="running") | .Tags[0].Value | split("|")[0]'`
+    for i in $instances
+    do
+        mem=$(ssh $i nvidia-smi | grep -o [0-9]+MiB\ /\ [0-9]+MiB)
+        echo $i $mem
+    done
 }
 
 # Start EC2 Instance by name
