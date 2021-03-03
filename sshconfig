@@ -109,3 +109,7 @@ Host hopper
 Host jackson
     User ubuntu
     Hostname ec2-34-255-116-35.eu-west-1.compute.amazonaws.com
+
+Host bernoulli
+    User ubuntu
+    Hostname ec2-34-251-57-240.eu-west-1.compute.amazonaws.com
