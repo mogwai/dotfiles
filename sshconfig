@@ -83,6 +83,7 @@ Host beaver
     User ubuntu
 
 Host euler
+    User harry
     Hostname euler.rig.sonantic.io
 
 Host feynman
@@ -102,6 +103,8 @@ Host *.compute.amazonaws.com
 Host hopper
     Hostname ec2-34-244-252-239.eu-west-1.compute.amazonaws.com
     User harry
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host jackson
     User ubuntu
