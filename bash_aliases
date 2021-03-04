@@ -23,7 +23,7 @@ alias rand='find . -type f | shuf -n 1'
 
 #Telgram CLI
 alias tg='telegram-cli -N'
-
+alias j='joplin'
 alias c='clear'
 alias edba='edb aliases'
 alias edbp='edb profile'
