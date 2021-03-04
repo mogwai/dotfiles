@@ -1,5 +1,6 @@
 Host *
     StrictHostKeyChecking no
+    ConnectionAttempts 20
     # UserKnownHostsFile /dev/null
     ControlMaster auto
     Compression yes
