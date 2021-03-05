@@ -205,3 +205,6 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 
 " Insert time when you press F5
 inoremap <F5> <C-R>=strftime("%F")<CR>
+
+" Select All
+nnoremap <C-A> ggVG
