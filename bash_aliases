@@ -135,7 +135,8 @@ venv() {
     else
         python -m venv .venv --prompt $(basename $PWD)
         source .venv/bin/activate
-        pip install --upgrade pip
+        pip install --upgrade pip >> /dev/null
+        pip install wheel pdbpp >> /dev/null
         if [[ -f ~/.venv/bin/activate ]]; then
             cp -r ~/.venv/lib .venv/
         fi
