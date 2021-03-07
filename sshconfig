@@ -35,8 +35,9 @@ Host openwrt
     Hostname 192.168.1.1
 
 Host openwrtr
-    Hostname openwrt
-    ProxyCommand ssh root@baz.codes nc %h %p
+    User root
+    Hostname 192.168.1.1
+    ProxyCommand ssh root@159.65.214.107 nc %h %p
 
 Host km
     Hostname 192.168.1.209
@@ -45,11 +46,11 @@ Host km
 Host kml
     HostName 192.168.1.209
 
-Host hd
-    Hostname 192.168.1.121
+Host hdr
+    Hostname 192.168.1.122
     ProxyCommand ssh root@baz.codes nc %h %p
 
-Host hdl
+Host hd
     Hostname hd.lan
     ForwardX11 yes
     ForwardX11Trusted yes
@@ -86,6 +87,8 @@ Host beaver
 Host euler
     User harry
     Hostname euler.rig.sonantic.io
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host feynman
     Hostname feynman.rig.sonantic.io
