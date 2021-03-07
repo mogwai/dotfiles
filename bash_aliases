@@ -143,6 +143,8 @@ venv() {
     fi
 }
 
+alias venvr='rm -rf .venv'
+
 function condac {
     conda create -y -n $(basename $PWD) python=3.8 > /dev/null
     conda activate $(basename $PWD)
