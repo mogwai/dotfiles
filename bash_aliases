@@ -213,9 +213,12 @@ wf(){
 tts_path=~/sonantic
 year=$(date +'%Y')
 month=$(date +'%m')
+
 # mkdir -p ${tts_path}/experiments/${year}_${month}/mel
 # mkdir -p ${tts_path}/experiments/${year}_${month}/voc
 alias cdmel="cd ${tts_path}/experiments/${year}_${month}/mel"
 alias cdvoc="cd ${tts_path}/experiments/${year}_${month}/voc"
+alias cdtts='cd ${tts_path}/src/sonantic/tts'
 
 D=~/desktop
+
