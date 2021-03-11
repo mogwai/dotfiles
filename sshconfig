@@ -52,6 +52,7 @@ Host hdr
 
 Host hd
     Hostname hd.lan
+    # This is so that we can copy the clipboard on the machine!
     ForwardX11 yes
     ForwardX11Trusted yes
 
@@ -74,6 +75,8 @@ Host fourier
     User harry
     Hostname self.rig.sonantic.io
     Port 22
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host ada
     User harry
@@ -112,8 +115,14 @@ Host hopper
 
 Host jackson
     User ubuntu
-    Hostname ec2-34-255-116-35.eu-west-1.compute.amazonaws.com
+    Hostname 176.34.211.117
 
 Host bernoulli
     User ubuntu
     Hostname ec2-34-251-57-240.eu-west-1.compute.amazonaws.com
+
+# Myndup
+
+Host payroll
+    User root
+    Hostname 188.166.156.239
