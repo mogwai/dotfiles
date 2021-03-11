@@ -5,6 +5,6 @@ This repo is for managing the various config files that are useful for working w
 ## Quick Installation
 
 ```
-curl https://raw.githubusercontent.com/mogwai/dotfiles/master/install.sh | bash
+curl https://git.io/JqspW | bash
 ```
 
