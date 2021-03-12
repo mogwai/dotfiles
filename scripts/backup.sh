@@ -1,7 +1,7 @@
 dir=$(pwd)
 cd
 
-folders=".config pictures .vim snap desktop .aws downloads .bash_history .vim .kde .gtkrc-2.0 .aws"
+folders=".cache .config pictures work .vim snap .aws downloads .bash_history .vim .kde .gtkrc-2.0"
 filename=$dir/$(date +%d-%m-%y)-backup.tar.gz
 
 echo $filename

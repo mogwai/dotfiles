@@ -24,6 +24,12 @@ alias rand='find . -type f | shuf -n 1'
 #Telgram CLI
 alias tg='telegram-cli -N'
 
+# Joplin
+alias j='joplin'
+alias je='j edit $(j ls -l)'
+alias jc='j cat $(j ls -l)'
+
+
 alias c='clear'
 alias edba='edb aliases'
 alias edbp='edb profile'
@@ -135,12 +141,15 @@ venv() {
     else
         python -m venv .venv --prompt $(basename $PWD)
         source .venv/bin/activate
-        pip install --upgrade pip
-        if [[ -f ~/.venv/bin/activate ]]; then
-            cp -r ~/.venv/lib .venv/
-        fi
+        pip install --upgrade pip >> /dev/null
+        pip install wheel pdbpp >> /dev/null
+        # if [[ -f ~/.venv/bin/activate ]]; then
+        #     cp -r ~/.venv/lib .venv/
+        # fi
     fi
 }
+
+alias venvr='rm -rf .venv'
 
 function condac {
     conda create -y -n $(basename $PWD) python=3.8 > /dev/null
@@ -157,7 +166,12 @@ battery() {
 
 # List EC2 Instances
 ec2ls(){
-    aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.State.Name=="running") | .Tags[0].Value'
+    instances=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.State.Name=="running") | .Tags[0].Value | split("|")[0]'`
+    for i in $instances
+    do
+        mem=$(ssh $i nvidia-smi | grep -o [0-9]+MiB\ /\ [0-9]+MiB)
+        echo $i $mem
+    done
 }
 
 # Start EC2 Instance by name
@@ -199,9 +213,12 @@ wf(){
 tts_path=~/sonantic
 year=$(date +'%Y')
 month=$(date +'%m')
+
 # mkdir -p ${tts_path}/experiments/${year}_${month}/mel
 # mkdir -p ${tts_path}/experiments/${year}_${month}/voc
 alias cdmel="cd ${tts_path}/experiments/${year}_${month}/mel"
 alias cdvoc="cd ${tts_path}/experiments/${year}_${month}/voc"
+alias cdtts='cd ${tts_path}/src/sonantic/tts'
 
 D=~/desktop
+

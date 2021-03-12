@@ -1,5 +1,6 @@
 Host *
     StrictHostKeyChecking no
+    ConnectionAttempts 20
     # UserKnownHostsFile /dev/null
     ControlMaster auto
     Compression yes
@@ -34,8 +35,9 @@ Host openwrt
     Hostname 192.168.1.1
 
 Host openwrtr
-    Hostname openwrt
-    ProxyCommand ssh root@baz.codes nc %h %p
+    User root
+    Hostname 192.168.1.1
+    ProxyCommand ssh root@159.65.214.107 nc %h %p
 
 Host km
     Hostname 192.168.1.209
@@ -44,12 +46,13 @@ Host km
 Host kml
     HostName 192.168.1.209
 
-Host hd
-    Hostname 192.168.1.121
+Host hdr
+    Hostname 192.168.1.122
     ProxyCommand ssh root@baz.codes nc %h %p
 
-Host hdl
+Host hd
     Hostname hd.lan
+    # This is so that we can copy the clipboard on the machine!
     ForwardX11 yes
     ForwardX11Trusted yes
 
@@ -72,6 +75,8 @@ Host fourier
     User harry
     Hostname self.rig.sonantic.io
     Port 22
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host ada
     User harry
@@ -85,6 +90,8 @@ Host beaver
 Host euler
     User harry
     Hostname euler.rig.sonantic.io
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host feynman
     Hostname feynman.rig.sonantic.io
@@ -108,4 +115,14 @@ Host hopper
 
 Host jackson
     User ubuntu
-    Hostname ec2-34-255-116-35.eu-west-1.compute.amazonaws.com
+    Hostname 176.34.211.117
+
+Host bernoulli
+    User ubuntu
+    Hostname ec2-34-251-57-240.eu-west-1.compute.amazonaws.com
+
+# Myndup
+
+Host payroll
+    User root
+    Hostname 188.166.156.239

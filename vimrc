@@ -108,7 +108,7 @@ let g:rg_derive_root='true'
 noremap <leader>/ :Commentary<cr>
 
 "Copy and Paste from Clipboard
-set clipboard+=unamed
+set clipboard+=unnamed
 
 vmap <C-c> "+yi
 vmap <C-x> "+c
@@ -203,6 +203,8 @@ set laststatus=1 " Always display the statusline in all windows
 set showtabline=0 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
+" Insert time when you press F5
+inoremap <F5> <C-R>=strftime("%F")<CR>
 
-"Insert Time
-nnoremap <F5> "=strftime("%F")<CR>
+" Select All
+nnoremap <C-A> ggVG
