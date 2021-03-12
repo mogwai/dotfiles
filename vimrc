@@ -203,3 +203,6 @@ set laststatus=1 " Always display the statusline in all windows
 set showtabline=0 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
+
+"Insert Time
+nnoremap <F5> "=strftime("%F")<CR>
