@@ -247,6 +247,7 @@ elif [[ -d ~/miniconda3/envs/$basename ]]; then
 fi
 
 
+# If we want powerline in the terminal
 # if [ -f ~/.vim/plugged/powerline/powerline/bindings/bash/powerline.sh ]; then
 #     source ~/.vim/plugged/powerline/powerline/bindings/bash/powerline.sh
 # fi
