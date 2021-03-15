@@ -82,6 +82,8 @@ Host ada
     User harry
     Hostname self.rig.sonantic.io
     Port 24
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host beaver
     Hostname beaver.rig.sonantic.io
