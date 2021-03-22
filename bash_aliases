@@ -222,3 +222,6 @@ alias cdtts='cd ${tts_path}/src/sonantic/tts'
 
 D=~/desktop
 
+hoggpu(){
+    python ~/dotfiles/scripts/hoggpu.py $1
+}

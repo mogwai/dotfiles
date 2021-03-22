@@ -69,7 +69,7 @@ set updatetime=300
 "Keybindings
 " map <C> :NERDTreeToggle<CR>
 map  <C-n> :tabnew<CR>
-map <C-p> :Files<CR>
+map <C-p> :History<CR>
 map <C-F> :Rg<CR>
 
 "use <tab> for trigger completion and navigate to the next complete item
