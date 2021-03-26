@@ -1,0 +1,9 @@
+pkill slack
+pkill signal
+pkill web-torrent
+pkill telegram
+pkill joplin
+pkill pia
+pkill thunderbird
+pkill Discord
+pkill steam
