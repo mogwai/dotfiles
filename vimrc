@@ -37,10 +37,11 @@ Plug 'kopischke/vim-fetch'
 
 Plug 'powerline/powerline'
 
+" Cool status bar stuff
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-
+" Markdown Preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 call plug#end()
 
