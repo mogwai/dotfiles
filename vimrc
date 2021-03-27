@@ -40,6 +40,8 @@ Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 call plug#end()
 
 "gruvbox color theme
