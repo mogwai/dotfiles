@@ -74,8 +74,9 @@ alias cssh='rm -r /tmp/ssh-*@*'
 
 # GIT
 alias gs="git status"
-alias gp="git pull"
+alias gpl="git pull"
 alias gd="git diff"
+alias gp="git push"
 
 gcm() {
     git commit -m "$1"
