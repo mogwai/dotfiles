@@ -40,7 +40,7 @@ alias essh='vim ~/.ssh/config'
 alias nv='nvidia-smi'
 
 alias vrc='vim ~/.vimrc'
-alias v='vim'
+alias v='vim -X'
 
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
@@ -207,21 +207,13 @@ wf(){
     fi
 }
 
-
-# Sonantic
-
-tts_path=~/sonantic
-year=$(date +'%Y')
-month=$(date +'%m')
-
-# mkdir -p ${tts_path}/experiments/${year}_${month}/mel
-# mkdir -p ${tts_path}/experiments/${year}_${month}/voc
-alias cdmel="cd ${tts_path}/experiments/${year}_${month}/mel"
-alias cdvoc="cd ${tts_path}/experiments/${year}_${month}/voc"
-alias cdtts='cd ${tts_path}/src/sonantic/tts'
-
 D=~/desktop
 
 hoggpu(){
     python ~/dotfiles/scripts/hoggpu.py $1
 }
+
+# Sonantic
+alias train='sonctl train'
+alias cdtts='cd ~/sonantic/src/sonantic/tts/'
+

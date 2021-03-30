@@ -8,7 +8,7 @@
     pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
 [core]
     attributesfile = /home/harry/.gitattributes
-    ; pager = delta
+    pager = delta
 [commit]
     ; gpgsign = true
 [pull]
