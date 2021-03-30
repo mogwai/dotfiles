@@ -67,6 +67,7 @@ alias cssh='rm -r /tmp/ssh-*@*'
 # GIT
 alias gs="git status"
 alias gp="git pull"
+alias gd="gid diff"
 
 gcm() {
     git commit -m "$1"
@@ -149,7 +150,7 @@ venv() {
     fi
 }
 
-alias venvr='rm -rf .venv'
+alias venvr='deactivate && rm -rf .venv'
 
 function condac {
     conda create -y -n $(basename $PWD) python=3.8 > /dev/null
