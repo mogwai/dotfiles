@@ -4,6 +4,14 @@ function edb {
     vim ~/.bash_$1 && source ~/.bash_$1
 }
 
+function cat {
+    if [ -f `which batcat` ]; then
+        batcat $@
+    else
+        cat $@
+    fi
+}
+
 function apt {
     if [ -f `which apt-fast` ]; then
         apt-fast $@
@@ -67,7 +75,7 @@ alias cssh='rm -r /tmp/ssh-*@*'
 # GIT
 alias gs="git status"
 alias gp="git pull"
-alias gd="gid diff"
+alias gd="git diff"
 
 gcm() {
     git commit -m "$1"
