@@ -70,14 +70,8 @@ alias gp="git pull"
 alias gd="gid diff"
 
 gcm() {
-    git commit -m "$1"
-}
-
-gcma() {
     git commit -am "$1"
 }
-
-
 
 # Python
 alias p='python'
