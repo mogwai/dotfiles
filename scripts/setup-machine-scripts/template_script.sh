@@ -48,6 +48,7 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_
 s dpkg -i ripgrep_12.1.1_amd64.deb
 rm ripgrep_12.1.1_amd64.deb
 
+# This might break Ubuntu < 19
 s update-alternatives --install /usr/bin/python python /usr/bin/python3.8 0
 
 # Install Node
@@ -86,3 +87,10 @@ source ~/dotfiles/bash_aliases
 pip install powerline-status
 
 cd $current_dir
+
+# Install Delta for Git diffs
+
+curl -OL https://github.com/dandavison/delta/releases/download/0.7.1/git-delta_0.7.1_amd64.deb
+s dpkg -i git-delta_0.7.1_amd64.deb
+rm git-delta_0.7.1_amd64.deb
+
