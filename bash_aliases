@@ -5,10 +5,11 @@ function edb {
 }
 
 function cat {
-    if [ -f `which batcat` ]; then
+    if command -v batcat
+    then
         batcat $@
     else
-        cat $@
+        command cat $@
     fi
 }
 
