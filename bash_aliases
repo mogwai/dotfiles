@@ -222,3 +222,11 @@ hoggpu(){
 alias train='sonctl train'
 alias cdtts='cd ~/sonantic/src/sonantic/tts/'
 
+# Use sudo if we aren't root when we need to
+function s {
+    if [ `which sudo` ]; then
+        sudo $@
+    else
+        $@
+    fi
+}
