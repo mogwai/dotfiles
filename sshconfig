@@ -57,6 +57,7 @@ Host *.rig.sonantic.io
     ForwardX11Trusted yes
 
 Host newton
+    User harry
     Hostname self.rig.sonantic.io
     Port 23
 
