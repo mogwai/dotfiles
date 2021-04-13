@@ -5,7 +5,7 @@ function edb {
 
 # Use batcat if it exists instead of cat
 function cat {
-    if command -v batcat
+    if command -v batcat &> /dev/null
     then
         batcat $@
     else
@@ -13,6 +13,7 @@ function cat {
     fi
 }
 
+# Use apt-fast instead of apt if it is availiable
 function apt {
     if [ -f `which apt-fast` ]; then
         apt-fast $@
@@ -29,7 +30,6 @@ alias ..='cd ..'
 # Random File from dir
 alias rand='find . -type f | shuf -n 1'
 
-
 #Telgram CLI
 alias tg='telegram-cli -N'
 
@@ -38,6 +38,7 @@ alias j='joplin'
 alias je='j edit $(j ls -l)'
 alias jc='j cat $(j ls -l)'
 
+alias po="poweroff"
 
 alias c='clear'
 alias edba='edb aliases'
@@ -212,6 +213,16 @@ wf(){
     fi
 }
 
+# Toggles bluetooth
+bt() {
+    if bluetoothctl show | grep Powered | grep yes > /dev/null; then
+        bluetoothctl power off
+    else
+        bluetoothctl power on
+        bluetoothctl connect EC:81:93:6D:6A:2B
+    fi
+}
+
 D=~/desktop
 
 hoggpu(){
@@ -230,3 +241,4 @@ function s {
         $@
     fi
 }
+
