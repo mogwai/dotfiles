@@ -5,10 +5,11 @@ function edb {
 
 # Use batcat if it exists instead of cat
 function cat {
-    if [ -f `which batcat` ]; then
+    if command -v batcat
+    then
         batcat $@
     else
-        cat $@
+        command cat $@
     fi
 }
 
@@ -79,14 +80,8 @@ alias gd="git diff"
 alias gp="git push"
 
 gcm() {
-    git commit -m "$1"
-}
-
-gcma() {
     git commit -am "$1"
 }
-
-
 
 # Python
 alias p='python'
@@ -226,3 +221,12 @@ hoggpu(){
 # Sonantic
 alias train='sonctl train'
 alias cdtts='cd ~/sonantic/src/sonantic/tts/'
+
+# Use sudo if we aren't root when we need to
+function s {
+    if [ `which sudo` ]; then
+        sudo $@
+    else
+        $@
+    fi
+}
