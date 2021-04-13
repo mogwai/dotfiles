@@ -42,7 +42,6 @@ Host hdr
 
 Host hd
     Hostname hd.lan
-    # This is so that we can copy the clipboard on the machine!
     ForwardX11 yes
     ForwardX11Trusted yes
 
@@ -53,14 +52,11 @@ Host n1
 Host *.rig.sonantic.io
     User harry
     IdentityFile ~/.ssh/p2_single_gpu.pem
+    IdentityFile ~/.ssh/id_rsa
     ForwardX11 yes
     ForwardX11Trusted yes
 
-Host self.rig.sonantic.io
-    User harry
-
 Host newton
-    User harry
     Hostname self.rig.sonantic.io
     Port 23
 
@@ -78,6 +74,9 @@ Host beaver
 
 Host euler
     Hostname euler.rig.sonantic.io
+    User harry
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host feynman
     Hostname feynman.rig.sonantic.io
@@ -87,7 +86,6 @@ Host curie
     User ubuntu
 
 Host noether
-    User harry
     Hostname noether.rig.sonantic.io
 
 Host hopper
@@ -99,7 +97,6 @@ Host jackson
     Hostname 176.34.211.117
 
 Host bernoulli
-    User ubuntu
     Hostname ec2-34-251-57-240.eu-west-1.compute.amazonaws.com
 
 # Myndup

@@ -1,9 +1,9 @@
-
 # Edit bash script
 function edb {
     vim ~/.bash_$1 && source ~/.bash_$1
 }
 
+# Use batcat if it exists instead of cat
 function cat {
     if [ -f `which batcat` ]; then
         batcat $@
@@ -47,9 +47,9 @@ alias essh='vim ~/.ssh/config'
 # Nvidia
 alias nv='nvidia-smi'
 
+# Linux
 alias vrc='vim ~/.vimrc'
 alias v='vim -X'
-
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
 alias ta='tmux a'
@@ -63,9 +63,9 @@ alias jn='jupyter notebook'
 alias jna='condaa && pip install notebook && jn'
 alias clip='xclip -i -sel c'
 alias terminal='gnome-terminal'
-alias kc='kubectl'
 alias wn1='watch -n 1'
 alias myip='curl https://api.ipify.org'
+
 alias grep='rg'
 alias hear='cvlc --play-and-exit'
 
@@ -226,4 +226,3 @@ hoggpu(){
 # Sonantic
 alias train='sonctl train'
 alias cdtts='cd ~/sonantic/src/sonantic/tts/'
-# alias po="poweroff"
