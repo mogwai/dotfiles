@@ -45,7 +45,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 
 "Vim Github Links
-
+Plug 'knsh14/vim-github-link'
 call plug#end()
 
 "gruvbox color theme

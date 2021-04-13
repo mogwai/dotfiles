@@ -226,4 +226,4 @@ hoggpu(){
 # Sonantic
 alias train='sonctl train'
 alias cdtts='cd ~/sonantic/src/sonantic/tts/'
-
+# alias po="poweroff"

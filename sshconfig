@@ -10,16 +10,6 @@ Host *
     ServerAliveInterval 10
     # RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
 
-Host fd-vpn
-    Controlmaster auto
-    User root
-    Hostname labs.firedroplabs.com
-
-Host labs
-    HostName 10.8.0.6
-    ProxyCommand ssh root@labs.firedroplabs.com nc %h %p
-    User h
-
 # Personal
 # ========
 Host vpn
@@ -61,7 +51,10 @@ Host n1
 
 # Sonantic
 Host *.rig.sonantic.io
+    User harry
     IdentityFile ~/.ssh/p2_single_gpu.pem
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host self.rig.sonantic.io
     User harry
@@ -72,28 +65,19 @@ Host newton
     Port 23
 
 Host fourier
-    User harry
     Hostname self.rig.sonantic.io
     Port 22
-    ForwardX11 yes
-    ForwardX11Trusted yes
 
 Host ada
-    User harry
     Hostname self.rig.sonantic.io
     Port 24
-    ForwardX11 yes
-    ForwardX11Trusted yes
 
 Host beaver
     Hostname beaver.rig.sonantic.io
     User ubuntu
 
 Host euler
-    User harry
     Hostname euler.rig.sonantic.io
-    ForwardX11 yes
-    ForwardX11Trusted yes
 
 Host feynman
     Hostname feynman.rig.sonantic.io
@@ -106,14 +90,9 @@ Host noether
     User harry
     Hostname noether.rig.sonantic.io
 
-Host *.compute.amazonaws.com
-    User ubuntu
-
 Host hopper
     Hostname ec2-34-244-252-239.eu-west-1.compute.amazonaws.com
     User harry
-    ForwardX11 yes
-    ForwardX11Trusted yes
 
 Host jackson
     User ubuntu
@@ -124,7 +103,6 @@ Host bernoulli
     Hostname ec2-34-251-57-240.eu-west-1.compute.amazonaws.com
 
 # Myndup
-
 Host payroll
     User root
     Hostname 188.166.156.239
