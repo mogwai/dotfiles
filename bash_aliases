@@ -54,7 +54,6 @@ alias vrc='vim ~/.vimrc'
 
 # Use vim with no clipboard on on ssh connection
 v() {
-    echo $SSH_CONNECTION
     if [ -z ${SSH_CONNECTION+x} ]
     then
         vim $@
