@@ -51,7 +51,17 @@ alias nv='nvidia-smi'
 
 # Linux
 alias vrc='vim ~/.vimrc'
-alias v='vim -X'
+
+# Use vim with no clipboard on on ssh connection
+v() {
+    echo $SSH_CONNECTION
+    if [ -z ${SSH_CONNECTION+x} ]
+    then
+        vim $@
+    else
+        vim -X $@
+    fi
+}
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
 alias ta='tmux a'
