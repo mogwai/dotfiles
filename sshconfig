@@ -62,10 +62,12 @@ Host newton
     Port 23
 
 Host fourier
+    User harry
     Hostname self.rig.sonantic.io
     Port 22
 
 Host ada
+    User harry
     Hostname self.rig.sonantic.io
     Port 24
 
