@@ -22,3 +22,5 @@
     diffFilter = delta --color-only
 [submodule]
     recurse = true
+[push]
+    default = current

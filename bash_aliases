@@ -38,7 +38,7 @@ alias j='joplin'
 alias je='j edit $(j ls -l)'
 alias jc='j cat $(j ls -l)'
 
-alias po="poweroff"
+alias po="s poweroff"
 
 alias c='clear'
 alias edba='edb aliases'
