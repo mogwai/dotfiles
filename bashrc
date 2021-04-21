@@ -76,12 +76,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# Get dotfiles
-cwd=$PWD
-cd ~/dotfiles
-git pull > /dev/null &
-cd $cwd
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
