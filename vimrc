@@ -214,3 +214,6 @@ inoremap <F5> <C-R>=strftime("%F")<CR>
 
 " Select All
 nnoremap <C-A> ggVG
+
+" Disable EX mode
+nnoremap Q <Nop>
