@@ -61,6 +61,7 @@ v() {
         vim -X $@
     fi
 }
+
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
 alias ta='tmux a'
@@ -105,7 +106,6 @@ alias vimclear='rm -r ~/.vim/swap/*.swp'
 fh() {
     history | awk '{$1=""; print substr($0,2)}'| rg $1
 }
-
 
 #fzf
 alias gb='git branch | fzf | xargs git checkout'
@@ -192,8 +192,9 @@ ec2ls(){
 # Start EC2 Instance by name
 ec2start() {
     if [ -n "$1" ]; then
-        id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tags[0].Value, dns: .PublicDnsName } | select(.name|test("'$1'")).id'`
-        aws ec2 start-instances --instance-id $id
+        id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.Tags[0].Value != null) | select(.Tags[0].Value | test("'$1'")).InstanceId'`
+        echo Starting $id
+        aws ec2 start-instances --instance-id $id > /dev/null
     fi
 }
 
@@ -223,7 +224,7 @@ wf(){
 }
 
 # Toggles bluetooth
-bt() {
+bt(){
     if bluetoothctl show | grep Powered | grep yes > /dev/null; then
         bluetoothctl power off
     else
