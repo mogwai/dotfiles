@@ -11,7 +11,9 @@ esac
 # Get dotfiles updates
 cwd=$PWD
 cd ~/dotfiles
-nohup git pull > /dev/null 2>&1
+
+# Hides output completely of the command
+( git pull > /dev/null 2>&1 & )
 cd $cwd
 
 # don't put duplicate lines or lines starting with space in the history.
