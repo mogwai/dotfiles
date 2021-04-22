@@ -264,6 +264,3 @@ fi
 # Create directory for tmux
 export TMUX_TMPDIR=~/.tmux/tmp
 mkdir -p $TMUX_TMPDIR
-
-# vim as editor
-EDITOR="vim"
