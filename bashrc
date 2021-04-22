@@ -8,6 +8,12 @@ case $- in
       *) return;;
 esac
 
+# Get dotfiles updates
+cwd=$PWD
+cd ~/dotfiles
+nohup git pull > /dev/null 2>&1
+cd $cwd
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -87,6 +93,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

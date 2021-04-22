@@ -89,7 +89,10 @@ Host curie
     User ubuntu
 
 Host noether
+    User harry
     Hostname noether.rig.sonantic.io
+    ForwardX11 yes
+    ForwardX11Trusted yes
 
 Host hopper
     Hostname ec2-34-244-252-239.eu-west-1.compute.amazonaws.com
