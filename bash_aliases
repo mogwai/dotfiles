@@ -1,11 +1,11 @@
-
 # Edit bash script
 function edb {
     vim ~/.bash_$1 && source ~/.bash_$1
 }
 
+# Use batcat if it exists instead of cat
 function cat {
-    if command -v batcat  &> /dev/null
+    if command -v batcat &> /dev/null
     then
         batcat $@
     else
@@ -13,6 +13,7 @@ function cat {
     fi
 }
 
+# Use apt-fast instead of apt if it is availiable
 function apt {
     if [ -f `which apt-fast` ]; then
         apt-fast $@
@@ -29,7 +30,6 @@ alias ..='cd ..'
 # Random File from dir
 alias rand='find . -type f | shuf -n 1'
 
-
 #Telgram CLI
 alias tg='telegram-cli -N'
 
@@ -38,6 +38,7 @@ alias j='joplin'
 alias je='j edit $(j ls -l)'
 alias jc='j cat $(j ls -l)'
 
+alias po="s poweroff"
 
 alias c='clear'
 alias edba='edb aliases'
@@ -48,8 +49,18 @@ alias essh='vim ~/.ssh/config'
 # Nvidia
 alias nv='nvidia-smi'
 
+# Linux
 alias vrc='vim ~/.vimrc'
-alias v='vim -X'
+
+# Use vim with no clipboard on on ssh connection
+v() {
+    if [ -z ${SSH_CONNECTION+x} ]
+    then
+        vim $@
+    else
+        vim -X $@
+    fi
+}
 
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
@@ -64,9 +75,9 @@ alias jn='jupyter notebook'
 alias jna='condaa && pip install notebook && jn'
 alias clip='xclip -i -sel c'
 alias terminal='gnome-terminal'
-alias kc='kubectl'
 alias wn1='watch -n 1'
 alias myip='curl https://api.ipify.org'
+
 alias grep='rg'
 alias hear='cvlc --play-and-exit'
 
@@ -95,7 +106,6 @@ alias vimclear='rm -r ~/.vim/swap/*.swp'
 fh() {
     history | awk '{$1=""; print substr($0,2)}'| rg $1
 }
-
 
 #fzf
 alias gb='git branch | fzf | xargs git checkout'
@@ -182,8 +192,9 @@ ec2ls(){
 # Start EC2 Instance by name
 ec2start() {
     if [ -n "$1" ]; then
-        id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | {id: .InstanceId, state:.State.Name, name: .Tags[0].Value, dns: .PublicDnsName } | select(.name|test("'$1'")).id'`
-        aws ec2 start-instances --instance-id $id
+        id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.Tags[0].Value != null) | select(.Tags[0].Value | test("'$1'")).InstanceId'`
+        echo Starting $id
+        aws ec2 start-instances --instance-id $id > /dev/null
     fi
 }
 
@@ -212,6 +223,16 @@ wf(){
     fi
 }
 
+# Toggles bluetooth
+bt(){
+    if bluetoothctl show | grep Powered | grep yes > /dev/null; then
+        bluetoothctl power off
+    else
+        bluetoothctl power on
+        bluetoothctl connect EC:81:93:6D:6A:2B
+    fi
+}
+
 D=~/desktop
 
 hoggpu(){
@@ -221,4 +242,13 @@ hoggpu(){
 # Sonantic
 alias train='sonctl train'
 alias cdtts='cd ~/sonantic/src/sonantic/tts/'
+
+# Use sudo if we aren't root when we need to
+function s {
+    if [ `which sudo` ]; then
+        sudo $@
+    else
+        $@
+    fi
+}
 
