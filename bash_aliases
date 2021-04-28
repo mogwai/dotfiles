@@ -39,6 +39,7 @@ alias je='j edit $(j ls -l)'
 alias jc='j cat $(j ls -l)'
 
 alias po="s poweroff"
+alias rb="s command reboot"
 
 alias c='clear'
 alias edba='edb aliases'
@@ -157,7 +158,8 @@ venv() {
         python -m venv .venv --prompt $(basename $PWD)
         source .venv/bin/activate
         pip install --upgrade pip >> /dev/null
-        pip install wheel pdbpp >> /dev/null
+        # Copy base venv
+        pip install wheel pip setuptools pdbpp >> /dev/null
         # if [[ -f ~/.venv/bin/activate ]]; then
         #     cp -r ~/.venv/lib .venv/
         # fi
