@@ -22,6 +22,14 @@ function apt {
     fi
 }
 
+function grep {
+    if [ -f `which rg` ]; then
+        rg $@
+    else
+        grep $@
+    fi
+}
+
 # ls aliases
 alias l='ls -ahlF'
 alias lt='ls -ahlFtr'
@@ -75,11 +83,9 @@ alias condals='conda env list'
 alias jn='jupyter notebook'
 alias jna='condaa && pip install notebook && jn'
 alias clip='xclip -i -sel c'
-alias terminal='gnome-terminal'
 alias wn1='watch -n 1'
 alias myip='curl https://api.ipify.org'
 
-alias grep='rg'
 alias hear='cvlc --play-and-exit'
 
 # Clear ssh connection sockers
