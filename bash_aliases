@@ -259,4 +259,3 @@ function s {
         $@
     fi
 }
-

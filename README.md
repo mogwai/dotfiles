@@ -7,4 +7,3 @@ This repo is for managing the various config files that are useful for working w
 ```
 curl https://git.io/JqspW | bash
 ```
-
