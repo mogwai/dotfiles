@@ -6,4 +6,3 @@ else
     nmcli radio wifi on
     echo Wifi enabled
 fi
-

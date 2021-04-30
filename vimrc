@@ -46,6 +46,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 
 "Vim Github Links
 Plug 'knsh14/vim-github-link'
+Plug 'ruanyl/vim-gh-line'
+
 call plug#end()
 
 "gruvbox color theme
@@ -179,10 +181,11 @@ nmap <leader>rn <Plug>(coc-rename)
 cmap w!! w !sudo tee % > /dev/null <CR>
 
 " Overwrite the :X to be :x to prevent typos
-" aswell as Q for quit
-"
 cmap X x
+" Use Q for quit (Caps lock)
 cmap Q q
+" Prevent window selection
+cmap W w
 
 vnoremap > >gv
 vnoremap < <gv
@@ -190,7 +193,16 @@ vnoremap < <gv
 " Auto remove whitespace
 autocmd BufWritePre * %s/\s\+$//e
 
+" Git
+" Git Blame
 :nmap <leader>b :call gitblame#echo()<CR>
+
+" Git Link
+" If not using this then remove
+:nmap % :GetCurrentBranchLink<CR>
+" This is if you want the more advanced plugin to copy to clipboard instead of
+" opening browser
+"let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
 " Indent Guides on startup
 let g:indent_guides_enable_on_vim_startup = 1
