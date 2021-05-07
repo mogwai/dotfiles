@@ -35,6 +35,8 @@ alias l='ls -ahlF'
 alias lt='ls -ahlFtr'
 alias ..='cd ..'
 
+alias cdd='cd ~/dotfiles'
+
 # Random File from dir
 alias rand='find . -type f | shuf -n 1'
 
@@ -249,7 +251,7 @@ hoggpu(){
 
 # Sonantic
 alias train='sonctl train'
-alias cdtts='cd ~/sonantic/src/sonantic/tts/'
+alias cdtts='cd ~/sonantic/src/sonantic/tts/ && t'
 
 # Use sudo if we aren't root when we need to
 function s {
