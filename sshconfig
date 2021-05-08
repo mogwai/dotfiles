@@ -118,3 +118,6 @@ Host mlflow
 Host payroll
     User root
     Hostname 188.166.156.239
+Host github.com
+	StrictHostKeyChecking no
+

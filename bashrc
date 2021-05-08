@@ -268,4 +268,6 @@ export TMUX_TMPDIR=~/.tmux/tmp
 mkdir -p $TMUX_TMPDIR
 
 # RUST
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.carge/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
