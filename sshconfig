@@ -48,6 +48,8 @@ Host hd
 Host n1
     Hostname node1.lan
 
+Host storjminer
+    Hostname storjminer.lan
 # Sonantic
 Host *.rig.sonantic.io
     User harry
@@ -118,6 +120,3 @@ Host mlflow
 Host payroll
     User root
     Hostname 188.166.156.239
-Host github.com
-	StrictHostKeyChecking no
-
