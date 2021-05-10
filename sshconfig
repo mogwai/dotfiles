@@ -48,6 +48,8 @@ Host hd
 Host n1
     Hostname node1.lan
 
+Host storjminer
+    Hostname storjminer.lan
 # Sonantic
 Host *.rig.sonantic.io
     User harry

@@ -83,7 +83,7 @@ npm i $extensions --global-stylus --ignore-scripts --no-bin-links --no-package-l
 
 cd
 source ~/dotfiles/bash_aliases
-
+venv
 pip install powerline-status
 
 cd $current_dir
