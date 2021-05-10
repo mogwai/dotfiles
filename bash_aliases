@@ -252,7 +252,7 @@ hoggpu(){
 # Sonantic
 alias train='sonctl train'
 export TTS="$HOME/sonantic/src/sonantic/tts"
-alias cdtts='cd $TTS && t'
+alias cdtts='cd $TTS && t &> /dev/null'
 
 # Use sudo if we aren't root when we need to
 function s {
