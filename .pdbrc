@@ -1,5 +1,5 @@
-# Enable tab completion                                                         
-import rlcompleter                                                              
-import pdb                                                                      
-pdb.Pdb.complete = rlcompleter.Completer(locals()).complete
+# Enable tab completion
+import pdb
+import rlcompleter
 
+pdb.Pdb.complete = rlcompleter.Completer(locals()).complete

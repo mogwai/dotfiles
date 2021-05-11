@@ -26,10 +26,20 @@ function apt {
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+function grep {
+    if [ -f `which rg` ]; then
+        rg $@
+    else
+        grep $@
+    fi
+}
+
 # ls aliases
 alias l='ls -ahlF'
 alias lt='ls -ahlFtr'
 alias ..='cd ..'
+
+alias cdd='cd ~/dotfiles'
 
 # Random File from dir
 alias rand='find . -type f | shuf -n 1'
@@ -43,6 +53,7 @@ alias je='j edit $(j ls -l)'
 alias jc='j cat $(j ls -l)'
 
 alias po="s poweroff"
+alias rb="s command reboot"
 
 alias c='clear'
 alias edba='edb aliases'
@@ -78,11 +89,9 @@ alias condals='conda env list'
 alias jn='jupyter notebook'
 alias jna='condaa && pip install notebook && jn'
 alias clip='xclip -i -sel c'
-alias terminal='gnome-terminal'
 alias wn1='watch -n 1'
 alias myip='curl https://api.ipify.org'
 
-alias grep='rg'
 alias hear='cvlc --play-and-exit'
 
 # Clear ssh connection sockers
@@ -161,7 +170,8 @@ venv() {
         python -m venv .venv --prompt $(basename $PWD)
         source .venv/bin/activate
         pip install --upgrade pip >> /dev/null
-        pip install wheel pdbpp >> /dev/null
+        # Copy base venv
+        pip install wheel pip setuptools pdbpp >> /dev/null
         # if [[ -f ~/.venv/bin/activate ]]; then
         #     cp -r ~/.venv/lib .venv/
         # fi
@@ -245,7 +255,8 @@ hoggpu(){
 
 # Sonantic
 alias train='sonctl train'
-alias cdtts='cd ~/sonantic/src/sonantic/tts/'
+export TTS="$HOME/sonantic/src/sonantic/tts"
+alias cdtts='cd $TTS && t &> /dev/null'
 
 # Use sudo if we aren't root when we need to
 function s {
@@ -255,4 +266,3 @@ function s {
         $@
     fi
 }
-

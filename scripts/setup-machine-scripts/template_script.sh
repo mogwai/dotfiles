@@ -83,7 +83,7 @@ npm i $extensions --global-stylus --ignore-scripts --no-bin-links --no-package-l
 
 cd
 source ~/dotfiles/bash_aliases
-
+venv
 pip install powerline-status
 
 cd $current_dir
@@ -93,4 +93,3 @@ cd $current_dir
 curl -OL https://github.com/dandavison/delta/releases/download/0.7.1/git-delta_0.7.1_amd64.deb
 s dpkg -i git-delta_0.7.1_amd64.deb
 rm git-delta_0.7.1_amd64.deb
-

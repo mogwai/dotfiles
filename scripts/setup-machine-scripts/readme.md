@@ -36,5 +36,3 @@ To remove the password protection on the keys after you've installed them:
 ```
 ssk-keygen -p
 ```
-
-

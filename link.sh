@@ -10,4 +10,3 @@ done
 
 mv ~/.ssh/config ~/.ssh/config.bak
 ln -s ~/dotfiles/sshconfig ~/.ssh/config
-
