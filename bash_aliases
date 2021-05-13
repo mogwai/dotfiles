@@ -237,6 +237,10 @@ wf(){
     fi
 }
 
+alias shire="nmcli c up _shire"
+alias three="nmcli c up Three_000325"
+alias bazphone="nmcli c up _b"
+
 # Toggles bluetooth
 bt(){
     if bluetoothctl show | grep Powered | grep yes > /dev/null; then
