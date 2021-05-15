@@ -211,6 +211,7 @@ ec2start() {
         aws ec2 start-instances --instance-id $id > /dev/null
     fi
 }
+complete -o bashdefault -o default -F _fzf_host_completion ec2start
 
 # Kill Distractions
 kd(){
@@ -237,9 +238,9 @@ wf(){
     fi
 }
 
-alias shire="nmcli c up _shire"
-alias three="nmcli c up Three_000325"
-alias bazphone="nmcli c up _b"
+alias shire="nmcli c up _shire &"
+alias three="nmcli c up Three_000325 &"
+alias bazphone="nmcli c up _b &"
 
 # Toggles bluetooth
 bt(){
