@@ -7,3 +7,4 @@ pkill pia
 pkill thunderbird
 pkill Discord
 pkill steam
+pkill Battle.net.exe
