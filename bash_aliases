@@ -208,48 +208,28 @@ ec2start() {
     if [ -n "$1" ]; then
         id=`aws ec2 describe-instances | jq -r '.Reservations[].Instances[0] | select(.Tags[0].Value != null) | select(.Tags[0].Value | test("'$1'")).InstanceId'`
         echo Starting $id
-        aws ec2 start-instances --instance-id $id > /dev/null
+        aws ec2 start-instances --instance-id $id > /dev/null && ssh $1
     fi
 }
 complete -o bashdefault -o default -F _fzf_host_completion ec2start
 
 # Kill Distractions
 kd(){
-    pkill slack
-    pkill signal
-    pkill web-torrent
-    pkill telegram
-    pkill joplin
-    pkill pia
-    pkill thunderbird
-    pkill Discord
-    pkill steam
+    bash ~/dotfiles/scripts/killdistractions.sh
 }
 
 # Wifi Toggle
 wf(){
-    out=`nmcli radio wifi`
-    if [[ "$out" == "enabled" ]]; then
-        nmcli radio wifi off
-        echo Wifi disabled
-    else
-        nmcli radio wifi on
-        echo Wifi enabled
-    fi
+    bash ~/dotfiles/scripts/togglewifi.sh
 }
 
 alias shire="nmcli c up _shire &"
 alias three="nmcli c up Three_000325 &"
-alias bazphone="nmcli c up _b &"
+alias _b="nmcli c up _b &"
 
 # Toggles bluetooth
 bt(){
-    if bluetoothctl show | grep Powered | grep yes > /dev/null; then
-        bluetoothctl power off
-    else
-        bluetoothctl power on
-        bluetoothctl connect EC:81:93:6D:6A:2B
-    fi
+    bash ~/dotfiles/scripts/togglebluetooth.sh
 }
 
 D=~/desktop
