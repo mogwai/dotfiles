@@ -14,6 +14,8 @@ cd ~/dotfiles
 
 # Hides output completely of the command
 ( git pull > /dev/null 2>&1 & )
+( command vim -e +'PlugInstall --sync' +qa > /dev/null  & )
+( command vim -e +'PlugClean --sync' +qa > /dev/null  & )
 cd $cwd
 
 # don't put duplicate lines or lines starting with space in the history.
