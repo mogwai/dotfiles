@@ -232,3 +232,6 @@ nnoremap Q <Nop>
 
 " Copy github lines link to clipboard
 let g:gh_open_command = 'fn() { echo "$@" | clip; }; fn '
+
+" Case insensitive search
+set smartcase
