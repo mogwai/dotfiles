@@ -266,3 +266,6 @@ mkdir -p $TMUX_TMPDIR
 if [[ -f "$HOME/.carge/env" ]]; then
   . "$HOME/.cargo/env"
 fi
+
+
+export DISABLE_SLACK_LOGGING=true
