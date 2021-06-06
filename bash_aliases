@@ -62,7 +62,7 @@ alias eb='vim ~/.bashrc && source ~/.bashrc'
 alias essh='vim ~/.ssh/config'
 
 # Nvidia
-alias nv='nvidia-smi'
+alias nv='gpustat'
 
 # Linux
 alias vrc='vim ~/.vimrc'
