@@ -79,7 +79,7 @@ Host ada
 
 Host beaver
     Hostname beaver.rig.sonantic.io
-    User ubuntu
+    User harry
 
 Host euler
     Hostname euler.rig.sonantic.io
