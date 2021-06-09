@@ -80,6 +80,7 @@ v() {
 alias o='xdg-open'
 alias t='tmux new -s $(basename $PWD)'
 alias ta='tmux a'
+alias tls='tmux ls'
 alias dc='docker-compose'
 
 # Conda
