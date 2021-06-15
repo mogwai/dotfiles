@@ -110,7 +110,7 @@ gcm() {
 
 # Python
 alias p='python'
-alias pp='vim play.py --new'
+alias pp='vim play.py'
 
 # Clear swap files in vim
 alias vimclear='rm -r ~/.vim/swap/*.swp'
