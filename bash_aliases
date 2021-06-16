@@ -78,9 +78,17 @@ v() {
 }
 
 alias o='xdg-open'
+
+# TMUX
 alias t='tmux new -s $(basename $PWD)'
 alias ta='tmux a'
 alias tls='tmux ls'
+
+tn(){
+    if [ -n "$1" ]; then
+        tmux new -s $1
+    fi
+}
 alias dc='docker-compose'
 
 # Conda
