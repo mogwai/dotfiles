@@ -84,11 +84,17 @@ alias t='tmux new -s $(basename $PWD)'
 alias ta='tmux a'
 alias tls='tmux ls'
 
+tr(){
+    oldname=$(tmux display-message -p '#S')
+    tmux rename-session -t $oldname $1
+}
+
 tn(){
     if [ -n "$1" ]; then
         tmux new -s $1
     fi
 }
+
 alias dc='docker-compose'
 
 # Conda
@@ -252,6 +258,7 @@ hoggpu(){
 alias train='sonctl train'
 export TTS="$HOME/sonantic/src/sonantic/tts"
 alias tts='cd $TTS && t &> /dev/null'
+alias cde="cd ~/experiments/non-speech"
 
 # Use sudo if we aren't root when we need to
 function s {
