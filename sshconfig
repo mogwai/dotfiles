@@ -112,7 +112,12 @@ Host bernoulli
     Hostname ec2-34-251-57-240.eu-west-1.compute.amazonaws.com
 
 Host mlflow
-    Hostname mlflow.sonantic.io
+    Hostname 35.177.219.187
+    IdentityFile ~/.ssh/mlflow.pem
+    User ec2-user
+
+Host mlflow2
+    Hostname 3.9.176.100
     IdentityFile ~/.ssh/mlflow.pem
     User ec2-user
 

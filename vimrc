@@ -204,13 +204,6 @@ autocmd BufWritePre * %s/\s\+$//e
 " opening browser
 "let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
-" Indent Guides on startup
-let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=lightgrey
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightgrey
-let g:indent_guides_guide_size = 1
-
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 

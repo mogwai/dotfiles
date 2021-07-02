@@ -103,6 +103,7 @@ alias gs="git status"
 alias gpl="git pull"
 alias gd="git diff"
 alias gp="git push"
+alias gr="git checkout -- ."
 
 gcm() {
     git commit -am "$1"
@@ -110,7 +111,7 @@ gcm() {
 
 # Python
 alias p='python'
-alias pp='vim play.py --new'
+alias pp='vim play.py'
 
 # Clear swap files in vim
 alias vimclear='rm -r ~/.vim/swap/*.swp'
@@ -240,6 +241,15 @@ hoggpu(){
     python ~/dotfiles/scripts/hoggpu.py $1
 }
 
+playfolder(){
+    for file in .
+    do
+        echo $file
+        play $file
+        sleep 3
+    done
+}
+
 # Sonantic
 alias train='sonctl train'
 export TTS="$HOME/sonantic/src/sonantic/tts"
@@ -252,4 +262,10 @@ function s {
     else
         $@
     fi
+}
+
+
+# ffmpeg
+wavtomp3(){
+    ffmpeg -i $1 -vn -ar 44100 -ac 2 -b:a 192k out.mp3
 }
